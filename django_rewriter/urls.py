@@ -5,6 +5,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    (r'^accounts/', include('registration.backends.simple.urls')),
     # Examples:
     # url(r'^$', 'django_rewriter.views.home', name='home'),
     # url(r'^django_rewriter/', include('django_rewriter.foo.urls')),

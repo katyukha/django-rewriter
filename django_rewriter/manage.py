@@ -9,6 +9,9 @@ except ImportError:
     sys.exit(1)
 
 import settings
+from os import path
+import sys
+sys.path.insert(1, path.join(path.abspath(path.dirname(__file__)), 'django-registration'))
 
 if __name__ == "__main__":
     execute_manager(settings)
