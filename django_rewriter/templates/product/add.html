@@ -1,0 +1,13 @@
+<html>
+<head>
+	<h1>Новый товар</h1> 
+	<title>Add</title>
+</head>
+<body>
+	<form action="{% url django_rewriter.product.views.add_product %}" method="POST">
+	<table>{% csrf_token %}
+	{{ form.as_table }}</table>
+	<input type="submit" value="Сохранить"/>
+	</form>
+</body>
+</html>

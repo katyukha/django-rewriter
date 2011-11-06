@@ -1,0 +1,13 @@
+<html>
+<head>
+	<h1>{{name}}</h1> 
+	<title>Edit</title>
+</head>
+<body>
+	<form action="{% url product_edit id %}" method="POST">
+	<table>{% csrf_token %}
+	{{ form.as_table }}</table>
+	<input type="submit" value="Сохранить"/>
+	</form>
+</body>
+</html>

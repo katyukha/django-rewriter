@@ -5,7 +5,11 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    (r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'^list/', 'django_rewriter.product.views.product_list'),
+    url(r'^add/', 'django_rewriter.product.views.add_product'),
+    url(r'^(?P<product_id>\d+)/', 'django_rewriter.product.views.edit', name = 'product_edit'),
+    #url(r'^/', 'django_rewriter.product.views.add_product'),
     # Examples:
     # url(r'^$', 'django_rewriter.views.home', name='home'),
     # url(r'^django_rewriter/', include('django_rewriter.foo.urls')),
