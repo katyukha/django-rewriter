@@ -10,7 +10,7 @@ class UserProfile(models.Model):
     UserInfo = models.TextField(blank=True)
 
 @receiver(post_save, sender=User)
-def ProfileUser (sender,instance, created, **kwargs):
+def profileuser_save (sender,instance, created, **kwargs):
 	if created:
 		UserProfile(user = instance).save()
 #post_save.connect(profileUser,sender=UserProfile)
