@@ -102,8 +102,11 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'django_rewriter.urls'
 
+from os import path
+DIR_NAME = path.abspath(path.dirname(__file__))
 TEMPLATE_DIRS = (
-    '/home/anton/django-rewriter/django_rewriter/templates/',
+    path.join(DIR_NAME, 'templates'),
+    #'/home/anton/django-rewriter/django_rewriter/templates/',
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
