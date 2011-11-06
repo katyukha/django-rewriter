@@ -2,6 +2,7 @@
 {% block content %}
 <h1>Регистрация</h1>
 <form method="post" action="">
+{% csrf_token %}
 <dl class="register">
 {% for field in form %}
     <dt>{{ field.label_tag }}</dt>

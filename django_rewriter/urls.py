@@ -6,6 +6,8 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     (r'^accounts/', include('registration.backends.simple.urls')),
+    (r'^login/', include('registration.backends.simple.urls')),
+    (r'^profile/', 'django_rewriter.profille.views.profileuser'),
     # Examples:
     # url(r'^$', 'django_rewriter.views.home', name='home'),
     # url(r'^django_rewriter/', include('django_rewriter.foo.urls')),

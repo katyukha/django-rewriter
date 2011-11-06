@@ -118,6 +118,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'registration',
+    'profille',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
@@ -146,12 +147,6 @@ LOGGING = {
         },
     }
 }
-ACCOUNT_ACTIVATION_DAYS = 2
+AUTH_PROFILE_MODULE = 'profille.UserProfile'
+LOGIN_REDIRECT_URL = '/profile/'
 
-AUTH_USER_EMAIL_UNIQUE = True
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = 1025
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
-EMAIL_USE_TLS = False
-DEFAULT_FROM_EMAIL = 'Moorowind1990@ukr.net'
