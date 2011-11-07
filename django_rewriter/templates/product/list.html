@@ -1,11 +1,12 @@
-<html>
-<head><h1>Список товаров</h1></head>
-<body>
+{% extends "product/user.html" %}
+
+{% block title %}List{% endblock %}
+{% block content %}
+	<h1>Список товаров</h1>
 	<ul>
-{% for prod in product_list %}
-    <li><a href="{% url product_view product_id=prod.id %}">{{ prod.name }}</a></li>
-{% endfor %}
-</ul>
+	{% for prod in product_list %}
+    	<li><a href="{% url product_view product_id=prod.id %}">{{ prod.name }}</a></li>
+	{% endfor %}
+	</ul>
 <div align="center"><a href="/add/">Добавить товар</a></div>
-</body>
-</html>
+{% endblock %}

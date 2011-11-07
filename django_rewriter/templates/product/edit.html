@@ -1,13 +1,11 @@
-<html>
-<head>
+{% extends "product/user.html" %}
+
+{% block title %}Edit{% endblock %}
+{% block content %}
 	<h1>{{prod.name}}</h1> 
-	<title>Edit</title>
-</head>
-<body>
 	<form action="{% url product_edit prod.id %}" method="POST">
 	<table>{% csrf_token %}
 	{{ form.as_table }}</table>
 	<input type="submit" value="Сохранить"/>
 	</form>
-</body>
-</html>
+{% endblock %}

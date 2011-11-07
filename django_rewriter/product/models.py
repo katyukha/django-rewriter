@@ -25,5 +25,6 @@ class Product(models.Model):
     status = models.CharField("Состояние",max_length=15,
                         choices=STATUS_CHOICES,blank=True,
                         default="draft")
+
     def __unicode__(self):
         return self.code

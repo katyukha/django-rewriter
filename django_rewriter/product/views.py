@@ -6,12 +6,13 @@ from django_rewriter.product.form import ProductForm
 from django.shortcuts import render_to_response
 from django.shortcuts import get_object_or_404
 
-
 def product_list(request, template_name = "product/list.html"):
     ls = Product.objects.all()
     return render_to_response(template_name, {
               'product_list' : ls,
+              'user':request.user,
               }, context_instance=RequestContext(request))
+
 def add_product(request, template_name = "product/add.html"):
     if request.method == 'POST':
         form = ProductForm(request.POST)
@@ -23,7 +24,9 @@ def add_product(request, template_name = "product/add.html"):
 
     return render_to_response(template_name,{
                 'form':form,
+                'user':request.user,
                 }, context_instance=RequestContext(request))
+
 def edit(request, product_id, template_name = "product/edit.html"):
     p = get_object_or_404(Product, pk=product_id)
     if request.method == 'POST':
@@ -37,9 +40,10 @@ def edit(request, product_id, template_name = "product/edit.html"):
                 'form':form,
                 'prod':p,
                 }, context_instance=RequestContext(request))
+
 def linking(request, product_id, template_name = 'product/edit.html'):
     p = get_object_or_404(Product, pk=product_id)
-    #p.user = request.user
+    p.user = request.user
     p.status = 'during'
     p.save()
     form = ProductForm(instance = p)
