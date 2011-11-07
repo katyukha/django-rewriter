@@ -24,7 +24,7 @@ def add_product(request, template_name = "product/add.html"):
     return render_to_response(template_name,{
                 'form':form,
                 }, context_instance=RequestContext(request))
-'''def edit(request, product_id, template_name = "product/edit.html"):
+def edit(request, product_id, template_name = "product/edit.html"):
     p = get_object_or_404(Product, pk=product_id)
     if request.method == 'POST':
         form = ProductForm(request.POST, instance = p)
@@ -35,19 +35,22 @@ def add_product(request, template_name = "product/add.html"):
         form = ProductForm(instance = p)
     return render_to_response(template_name,{
                 'form':form,
-                'name':p.name,
-                'id':p.id,
-                }, context_instance=RequestContext(request))'''
+                'prod':p,
+                }, context_instance=RequestContext(request))
+def linking(request, product_id, template_name = 'product/edit.html'):
+    p = get_object_or_404(Product, pk=product_id)
+    #p.user = request.user
+    p.status = 'during'
+    p.save()
+    form = ProductForm(instance = p)
+    return render_to_response(template_name,{
+                'form':form,
+                'prod':p,
+                }, context_instance=RequestContext(request))
+
 def product_view(request, product_id, template_name = "product/view.html"):
     p = get_object_or_404(Product, pk=product_id)
     return render_to_response(template_name,{
-                'name':p.name,
-                'code':p.code,
-                'brief_desc':p.brief_desc,
-                'full_desc':p.full_desc,
-                'meta_title':p.meta_title,
-                'meta_keywords':p.meta_keywords,
-                'meta_desc':p.meta_desc,
-                'rating':p.rating,
+                'prod':p,
                 }, context_instance=RequestContext(request))
     

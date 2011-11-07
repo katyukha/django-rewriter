@@ -1,38 +1,37 @@
 <html>
-<head><h1>{{name}}</h1></head>
+<head><h1>{{prod.name}}</h1></head>
 <body>
 	<table>
 		<tr>
 			<td>Код товара: </td>
-			<td>{{code}}</td>
+			<td>{{prod.code}}</td>
 		</tr>
 		<tr>
 			<td>Краткое описание: </td>
-			<td>{{brief}}</td>
+			<td>{{prod.brief}}</td>
 		</tr>
 		<tr>
 			<td>Полное описание: </td>
-			<td>{{full_desc}}</td>
+			<td>{{prod.full_desc}}</td>
 		</tr>
 		<tr>
 			<td>Мета-заголовок: </td>
-			<td>{{meta_title}}</td>
+			<td>{{prod.meta_title}}</td>
 		</tr>
 		<tr>
 			<td>Ключевые слова: </td>
-			<td>{{meta_keywords}}</td>
+			<td>{{prod.meta_keywords}}</td>
 		</tr>
 		<tr>
 			<td>Мета-описание: </td>
-			<td>{{meta_desc}}</td>
+			<td>{{prod.meta_desc}}</td>
 		</tr>
 		<tr>
 			<td>Оценка: </td>
-			<td>{{rating}}</td>
+			<td>{{prod.rating}}</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td></td>
+			<td><a href="{%url product_linking  prod.id %}">Редактировать</a></td>
 		</tr>
 	</table>
 </body>
