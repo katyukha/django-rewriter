@@ -6,11 +6,10 @@ from django.dispatch import receiver
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, unique=True)
-    url = models.URLField("Website", blank=True)
-    UserInfo = models.TextField(blank=True)
+    url = models.URLField("Домашня сторінка: ", blank=True)
+    UserInfo = models.TextField("Інформація про себе: ",blank=True)
 
 @receiver(post_save, sender=User)
 def profileuser_save (sender,instance, created, **kwargs):
 	if created:
 		UserProfile(user = instance).save()
-#post_save.connect(profileUser,sender=UserProfile)

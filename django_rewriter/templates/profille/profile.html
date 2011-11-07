@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Your in system</h1> <br/>
+
+<table>
+<tr>
+    <td>Name User</td>
+    <td>{{ user }}
+</tr>
+<tr>
+    <td> First name </td>
+    <td>{{ user.first_name }}</td>
+</tr>
+<tr>
+    <td> Last name </td>
+    <td>{{ user.last_name }}</td>
+</tr>
+{% endblock %}
+</table>
