@@ -10,7 +10,7 @@ urlpatterns = patterns('',
     url(r'^list/', 'django_rewriter.product.views.product_list'),
     url(r'^add/', 'django_rewriter.product.views.add_product'),
     url(r'^(?P<product_id>\d+)/', 'django_rewriter.product.views.product_view'),
-    #url(r'^(?P<product_id>\d+)/', 'django_rewriter.product.views.edit', name = 'product_edit'),
+    url(r'^(?P<username>\w+)/edit/', 'django_rewriter.profille.views.edit', name = 'user_edit'),
     #url(r'^/', 'django_rewriter.product.views.add_product'),
     # Examples:
     # url(r'^$', 'django_rewriter.views.home', name='home'),
