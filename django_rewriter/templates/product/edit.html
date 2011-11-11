@@ -1,4 +1,4 @@
-{% extends "product/user.html" %}
+{% extends "base.html" %}
 
 {% block title %}Edit{% endblock %}
 {% block content %}
@@ -6,6 +6,6 @@
 	<form action="{% url product_edit prod.id %}" method="POST">
 	<table>{% csrf_token %}
 	{{ form.as_table }}</table>
-	<input type="submit" value="Сохранить"/>
+	<input type="submit" value="Сохранить" />
 	</form>
 {% endblock %}

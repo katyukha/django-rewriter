@@ -16,5 +16,16 @@
     <td> Last name: </td>
     <td>{{ user.last_name }}</td>
 </tr>
-{% endblock %}
 </table>
+<div id="user_products">
+<h3>Ваши товары:</h3>
+	{% for p in product_list %}
+		<ul>
+		{% if p.user == user%}
+		<li><a href="{% url product_view product_id=p.id %}">{{ p.name }}</a></li>
+		{% endif %}
+		</ul>	
+	{% endfor %}
+</div>
+<br /><br /><a href = "{% url product_list %}">Взять для редактирования</a>
+{% endblock %}

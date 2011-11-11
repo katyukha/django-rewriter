@@ -1,12 +1,17 @@
-{% extends "product/user.html" %}
+{% extends "base.html" %}
 
 {% block title %}List{% endblock %}
 {% block content %}
 	<h1>Список товаров</h1>
-	<ul>
-	{% for prod in product_list %}
-    	<li><a href="{% url product_view product_id=prod.id %}">{{ prod.name }}</a></li>
+	
+	{% for p in product_list %}
+		<ul>
+		{% if not p.user %}
+		<li><a href="{% url product_view product_id=p.id %}">{{ p.name }}</a></li>
+		{% endif %}
+		</ul>	
+	{% empty %} 
+		Нет ни одного продукта для редактирования.
 	{% endfor %}
-	</ul>
-<div align="center"><a href="/add/">Добавить товар</a></div>
+ 
 {% endblock %}

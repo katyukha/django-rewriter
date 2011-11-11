@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
+
+{% block userinfo %}{% endblock %}
 {% block content %}
+{% if not user.is_authenticated %}
 <h1>Регистрация</h1>
 <form method="post" action="">
 {% csrf_token %}
@@ -14,4 +17,7 @@
 </dl>
 <input type="submit" value="Зарегистрироваться" / class="clearfix">
 </form>
+{% else %}
+<a href="{% url django_rewriter.profille.views.profileuser %}">{{user}}</a>, you're already in system!
+{% endif %}
 {% endblock %}

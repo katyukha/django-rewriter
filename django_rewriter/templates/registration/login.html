@@ -1,11 +1,13 @@
 {% extends "base.html" %}
 
-{% block content %}
-
+{% block title %}Login{% endblock %}
+{% block userinfo %}{% endblock %}
 {% if form.errors %}
 <p>Your username and password didn't match. Please try again.</p>
 {% endif %}
 
+{% block content %}
+{% if not user.is_authenticated %}
 <form method="post" action="{% url auth_login %}">
 {% csrf_token %}
 <table>
@@ -22,5 +24,8 @@
 <input type="submit" value="login" />
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
-
+<a href = "{% url registration_register %}"> Register </a>
+{% else %}
+<a href="{% url django_rewriter.profille.views.profileuser %}">{{user}}</a>, you're already in system!
+{% endif %}
 {% endblock %}
