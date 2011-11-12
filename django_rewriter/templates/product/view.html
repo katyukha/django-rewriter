@@ -35,12 +35,17 @@
 			</td>
 		</tr>
 		<tr>
-			{% if prod.user != user %}
-				<td><br /><a href="{%url product_linking  prod.id %}">Взять себе</a></td>
-			{% else %}
-				<td><br /><a href="{%url product_edit  prod.id %}">Редактировать</a></td>
-				<td><br /><a href="">Отправить</a></td>	
-			{% endif %}	
+			<td>Статус: </td>
+			<td>{{prod.get_status_display}}</td>
+		</tr>
+		<tr>
+			{% if prod.status == 'draft' %}
+				<td><br /><a href="{% url product_linking  prod.id %}">Взять себе</a></td>
+			{% endif %}
+			{% if prod.status == 'progress' %}
+				<td><br /><a href="{% url product_edit  prod.id %}">Редактировать</a></td>
+				<td><br /><a href="{% url product_send  prod.id %}">Отправить</a></td>	
+		        {% endif %}
 		</tr>
 	</table>
 {% endblock %}

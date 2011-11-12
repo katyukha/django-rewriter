@@ -2,10 +2,12 @@
 
 {% block title %}Edit{% endblock %}
 {% block content %}
-	<h1>Edit</h1> 
-	<form action="{% url django_rewriter.profille.views.profileuser %}" method="POST">
-	<table>{% csrf_token %}
-	{{ form.as_table }}</table>
+	<h1>Редактирование профиля</h1> 
+	<form action="{% url profile_edit %}" method="POST">
+	{% csrf_token %}
+	<table>
+            {{ form.as_table }}
+	</table>
 	<input type="submit" value="Сохранить"/>
 	</form>
 {% endblock %}

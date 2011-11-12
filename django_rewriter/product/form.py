@@ -4,4 +4,4 @@ from django_rewriter.product.models import Product
 class ProductForm(ModelForm):
     class Meta:
         model = Product
-        exclude = ('user','status')
+        exclude = ('user','status', 'rating')

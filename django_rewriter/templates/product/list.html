@@ -2,16 +2,40 @@
 
 {% block title %}List{% endblock %}
 {% block content %}
-	<h1>Список товаров</h1>
+        {% if owners_only %}
+            <h1>Мои товары</h1>
+        {% else %}
+            <h1>Список товаров</h1>
+        {% endif %}
+        
+        {% if product_list %}
+            <table class="product-list">
+            <tr>
+                <th>Товар</th><th>Оценка</th><th>Состояние</th><th>Действия</th>
+            </tr>
+	    {% for product in product_list %}
+                <tr>
+                     <td><a href="{% url product_view product_id=product.id %}">
+                         {{ product }}
+                     </a></td>
+                     <td>{% if product.rating %}{{ product.rating }}{% else %}не оценено{% endif %}</td>
+                     <td>{{ product.get_status_display }}</td>
+                     <td>
+                         {% if product.status == 'draft' %}
+                             <a href="{% url product_linking  product.id %}?next_page={{current_path}}"> Взять себе </a>
+                         {% endif %}
+                         
+                         {% if product.status == 'progress' %}
+                             <a href="{% url product_edit  product.id %}"> Редактировать </a>
+                             <a href="{% url product_send  product.id %}"> Отправить </a>
+                         {% endif %}
+                     </td>
+		</tr>
+            {% endfor %}
+            </table>
+	{% else %} 
+		Нет ни одного свободного продукта.
+	{% endif %}
 	
-	{% for p in product_list %}
-		<ul>
-		{% if not p.user %}
-		<li><a href="{% url product_view product_id=p.id %}">{{ p.name }}</a></li>
-		{% endif %}
-		</ul>	
-	{% empty %} 
-		Нет ни одного продукта для редактирования.
-	{% endfor %}
  
 {% endblock %}

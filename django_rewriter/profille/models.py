@@ -1,15 +1,11 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, unique=True)
-    url = models.URLField("Домашня сторінка: ", blank=True)
-    UserInfo = models.TextField("Інформація про себе: ",blank=True)
+    user      = models.OneToOneField(User, unique=True)
+    url       = models.URLField("Домашня сторінка: ", blank=True)
+    user_info = models.TextField("Інформація про себе: ",blank=True)
+    
+User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
 
-@receiver(post_save, sender=User)
-def profileuser_save (sender,instance, created, **kwargs):
-	if created:
-		UserProfile(user = instance).save()
