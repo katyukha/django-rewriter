@@ -22,6 +22,7 @@ urlpatterns = patterns('',
     url(r'^(?P<product_id>\d+)/$', 'django_rewriter.product.views.product_view'),
   
     url(r'^', include('registration.backends.simple.urls')),
+    url(r'^$', 'django_rewriter.profille.views.profileuser'),
 #=======
     #url(r'^(?P<product_id>\d+)/$', 'django_rewriter.product.views.product_view', name = 'product_view'),
     #url(r'^edit/(?P<product_id>\d+)/$', 'django_rewriter.product.views.edit', name = 'product_edit'),
