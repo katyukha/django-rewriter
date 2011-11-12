@@ -3,6 +3,9 @@
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+from os import path
+DIR_NAME = path.abspath(path.dirname(__file__))
+
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
@@ -69,6 +72,7 @@ ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
+    path.join(DIR_NAME, 'static'),
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -102,8 +106,6 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'django_rewriter.urls'
 
-from os import path
-DIR_NAME = path.abspath(path.dirname(__file__))
 TEMPLATE_DIRS = (
     path.join(DIR_NAME, 'templates'),
     #'/home/anton/django-rewriter/django_rewriter/templates/',

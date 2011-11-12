@@ -1,20 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>User information</h1> <br/>
-<table>
-<tr>
-    <td>User name:</td>
-    <td>{{ user.username }} &nbsp; <a href="{% url profile_edit %}">ред.</a></td>
-</tr>
-</table>
-<div id="user_products">
 <h3>Ваши товары:</h3>
         <ul>
 	{% for p in product_list %}		
 		<li><a href="{% url product_view product_id=p.id %}">{{ p.name }}</a></li>		
 	{% endfor %}
 	</ul>
-</div>
+
 <br /><br /><a href = "{% url product_list %}">Выбрать продукты для работы</a>
 {% endblock %}
