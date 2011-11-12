@@ -7,6 +7,7 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.http import Http404
 
 
 @login_required
@@ -18,6 +19,8 @@ def product_list(request, status = None, owners_only = False, template_name = "p
        ls = ls.filter(user = request.user)
     return render_to_response(template_name, {
               'product_list' : ls,
+              'owners_only'  : owners_only,
+              'current_path' : request.path,
               }, context_instance=RequestContext(request))
 
 @login_required
@@ -51,14 +54,15 @@ def edit(request, product_id, template_name = "product/edit.html"):
 
 @login_required
 def linking(request, product_id, template_name = 'product/list.html'):
-    all = Product.objects.all()
     p = get_object_or_404(Product, pk=product_id)
     p.user = request.user
-    p.status = 'during'
+    p.status = 'progress'
     p.save()
-    return render_to_response(template_name,{
-                'product_list':all,
-                }, context_instance=RequestContext(request))
+    next_page = request.GET.get('next_page')
+    if next_page:
+        return redirect(next_page)
+    else:
+        return redirect("product_view", product_id = product_id)
 
 @login_required
 def product_view(request, product_id, template_name = "product/view.html"):
@@ -66,4 +70,14 @@ def product_view(request, product_id, template_name = "product/view.html"):
     return render_to_response(template_name,{
                 'prod':p,
                 }, context_instance=RequestContext(request))
+
+@login_required
+def product_send(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    if product.user != request.user:  # if somebody trye to send not own product
+       raise Http404
+    product.status = 'done'
+    product.save()
+    return redirect("product_view", product_id = product_id)
     
+

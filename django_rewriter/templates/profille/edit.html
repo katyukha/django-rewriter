@@ -2,7 +2,7 @@
 
 {% block title %}Edit{% endblock %}
 {% block content %}
-	<h1>Edit</h1> 
+	<h1>Редактирование профиля</h1> 
 	<form action="{% url profile_edit %}" method="POST">
 	{% csrf_token %}
 	<table>

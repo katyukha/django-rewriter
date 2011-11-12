@@ -3,12 +3,12 @@ from django.db import models
 from django.contrib.auth.models import User
 
 STATUS_CHOICES = (
-    ('draft',u'Чорновий'),
-    ('during',u'В роботі'),        # TODO : should be replaced by progress for example or something more meaningful
-    ('deferred',u'Вiдкладений'),
-    ('done',u'Виконано'),
-    ('recd',u'Прийнятий'),         # CHECK : in ERP for this status 'accepted' name is used. may be use it here too?
-    ('rejected',u'Вiдхилений')
+    ('draft',    u'Чорновий'),
+    ('progress', u'В роботі'),
+    ('deferred', u'Вiдкладений'),
+    ('done',     u'Виконано'),
+    ('recd',     u'Прийнятий'),         # CHECK : in ERP for this status 'accepted' name is used. may be use it here too?
+    ('rejected', u'Вiдхилений')
 )
 
     

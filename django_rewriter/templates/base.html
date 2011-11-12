@@ -10,7 +10,7 @@
 	<a href="{% url auth_logout %}">Log out</a>
     </div>
     {% endblock %}
-    {% if user.is_athenticated %}
+    {% if user.is_authenticated %}
     <div id="left-menu">
          {% block left_menu %}
          <h3 id="left-menu-header">Управление:</h3>
