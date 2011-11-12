@@ -1,0 +1,19 @@
+<html lang="en">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+{% if user.is_authenticated %}
+    <div id="user_info" align="right">
+	<b>Пользователь: </b><a href="{% url django_rewriter.profille.views.profileuser %}">{{ user }}</a> |
+	<a href="{% url auth_logout %}">Log out</a>
+    </div>
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+{% else %}
+    Please <a href="{% url auth_login %}">log in</a> or <a href="{% url registration_register %}">register</a>!
+{% endif %}
+</body>
+</html>

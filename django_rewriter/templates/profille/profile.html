@@ -1,20 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Your in system</h1> <br/>
-
+<h1>User information</h1> <br/>
+<form action="{% url django_rewriter.profille.views.profileuser %}" method="POST">
 <table>
 <tr>
-    <td>Name User</td>
-    <td>{{ user }}
+    <td>User name:</td>
+    <td>{{ user }}</td>
 </tr>
 <tr>
-    <td> First name </td>
-    <td>{{ user.first_name }}</td>
+    <td>{{ form.as_p }}</td>
 </tr>
-<tr>
-    <td> Last name </td>
-    <td>{{ user.last_name }}</td>
-</tr>
+<br>
 {% endblock %}
 </table>

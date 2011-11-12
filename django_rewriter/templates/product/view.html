@@ -1,6 +1,8 @@
-<html>
-<head><h1>{{prod.name}}</h1></head>
-<body>
+{% extends "product/user.html" %}
+
+{% block title %}View{% endblock %}
+{% block content %}
+	<h1>{{prod.name}}</h1>
 	<table>
 		<tr>
 			<td>Код товара: </td>
@@ -34,5 +36,4 @@
 			<td><a href="{%url product_linking  prod.id %}">Редактировать</a></td>
 		</tr>
 	</table>
-</body>
-</html>
+{% endblock %}

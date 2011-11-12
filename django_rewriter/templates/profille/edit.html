@@ -1,9 +1,9 @@
-{% extends "product/user.html" %}
+{% extends "base.html" %}
 
 {% block title %}Edit{% endblock %}
 {% block content %}
-	<h1>{{prod.name}}</h1> 
-	<form action="{% url product_edit prod.id %}" method="POST">
+	<h1>Edit</h1> 
+	<form action="{% url django_rewriter.profille.views.profileuser %}" method="POST">
 	<table>{% csrf_token %}
 	{{ form.as_table }}</table>
 	<input type="submit" value="Сохранить"/>
