@@ -1,9 +1,15 @@
 <html lang="en">
 <head>
-    <title>My amazing site</title>
+    <title>{% block title %}{% endblock %}</title>
 </head>
 
 <body>
+{% block userinfo %}
+    <div id="user_info" align="right">
+	<b>Пользователь: </b><a href="{% url django_rewriter.profille.views.profileuser %}">{{ user }}</a> |
+	<a href="{% url auth_logout %}">Log out</a>
+    </div>
+{% endblock %}
     <div id="content">
         {% block content %}{% endblock %}
     </div>
