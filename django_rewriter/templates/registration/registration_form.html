@@ -18,6 +18,6 @@
 <input type="submit" value="Зарегистрироваться" / class="clearfix">
 </form>
 {% else %}
-<a href="{% url django_rewriter.profille.views.profileuser %}">{{user}}</a>, you're already in system!
+<a href="{% url profile %}">{{user}}</a>, you're already in system!
 {% endif %}
 {% endblock %}

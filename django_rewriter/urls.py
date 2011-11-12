@@ -10,6 +10,11 @@ urlpatterns = patterns('',
 
     url(r'^product/',      include('product.urls')),
 
+    url(r'^registration/register/$',
+                           'registration.views.register',
+                           { 'backend': 'registration.backends.simple.SimpleBackend',
+                             'success_url' : 'profile',},
+                           name='registration_register'),
     url(r'^registration/', include('registration.backends.simple.urls')),
 
     url(r'^$',             'profille.views.profileuser', name = 'home'),

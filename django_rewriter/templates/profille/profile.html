@@ -2,25 +2,19 @@
 
 {% block content %}
 <h1>User information</h1> <br/>
-<form action="{% url profile %}" method="POST">
 <table>
 <tr>
     <td>User name:</td>
-    <td>{{ user }}</td>
-</tr>
-<tr>
-    <td>{{ form.as_p }}</td>
+    <td>{{ user.username }} &nbsp; <a href="{% url profile_edit %}">ред.</a></td>
 </tr>
 </table>
 <div id="user_products">
 <h3>Ваши товары:</h3>
-	{% for p in product_list %}
-		<ul>
-		{% if p.user == user%}
-		<li><a href="{% url product_view product_id=p.id %}">{{ p.name }}</a></li>
-		{% endif %}
-		</ul>	
+        <ul>
+	{% for p in product_list %}		
+		<li><a href="{% url product_view product_id=p.id %}">{{ p.name }}</a></li>		
 	{% endfor %}
+	</ul>
 </div>
-<br /><br /><a href = "{% url product_list %}">Взять для редактирования</a>
+<br /><br /><a href = "{% url product_list %}">Выбрать продукты для работы</a>
 {% endblock %}

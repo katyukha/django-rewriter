@@ -1,5 +1,4 @@
 # Create your views here.
-from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django_rewriter.product.models import Product
 from django_rewriter.product.form import ProductForm
@@ -7,11 +6,16 @@ from django.shortcuts import render_to_response
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 
 @login_required
-def product_list(request, template_name = "product/list.html"):
+def product_list(request, status = None, owners_only = False, template_name = "product/list.html"):
     ls = Product.objects.all()
+    if status:
+       ls = ls.filter(status = status)
+    if owners_only:
+       ls = ls.filter(user = request.user)
     return render_to_response(template_name, {
               'product_list' : ls,
               }, context_instance=RequestContext(request))
@@ -37,9 +41,7 @@ def edit(request, product_id, template_name = "product/edit.html"):
         form = ProductForm(request.POST, instance = p)
         if form.is_valid():
             form.save()
-        return redirect("product_view", product_id = product_id)
-        #redir = "/%s/" % product_id
-        #return HttpResponseRedirect(redir)
+        return redirect("product_view", product_id = product_id)        
     else:
         form = ProductForm(instance = p)
     return render_to_response(template_name,{

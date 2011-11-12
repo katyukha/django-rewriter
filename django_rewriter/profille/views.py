@@ -1,37 +1,40 @@
-from django_rewriter.profille.models import UserProfile
+# -*- coding:utf-8 -*-
 from django.template import RequestContext
 from django.shortcuts import render_to_response
+from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-from django_rewriter.form import ProfileForm2, ProfileForm
-from django.shortcuts import get_object_or_404
-from django_rewriter.product.models import Product
+from profille.form import ProfileForm
+from product.models import Product
 
 @login_required
 def profileuser(request, template_name = 'profille/profile.html'):
-    ls = Product.objects.all()
+    products = Product.objects.filter(user=request.user)
     return render_to_response(template_name, {
-                'product_list': ls
+                'product_list': products,
                  }, context_instance = RequestContext(request))
 
-
-def edit(request, username, template_name = "profille/edit.html"):
-    p = get_object_or_404(User, username = username)
+@login_required
+def edit(request, template_name = "profille/edit.html"):
+    user = request.user
+    profile = user.profile
     if request.method == 'POST':
-        form = ProfileForm2(request.POST)
+        form = ProfileForm(request.POST)
         if form.is_valid():
-            return HttpResponseRedirect("/profile/")
+            user.first_name   = form.cleaned_data['f_name']
+            user.last_name    = form.cleaned_data['l_name']
+            profile.url       = form.cleaned_data['url']
+            profile.user_info = form.cleaned_data['user_info']
+            user.save()
+            profile.save()
+            return redirect("profile")
     else:
-        u = p.get_profile()
-        p.first_name = form.first_name
-        FormDate = {
-	        'f_name':u.first_name,
-	        'l_name':u.last_name,
-	        'url':'http://',
-	        'UserInfo':'UserInfo',
+        FormData = {
+	        'f_name'    : user.first_name,
+	        'l_name'    : user.last_name,
+	        'url'       : profile.url,
+	        'user_info' : profile.user_info,
 		}
-        form = ProfileForm2(initial = FormDate)
+        form = ProfileForm(initial = FormData)
     return render_to_response(template_name,{
         'form':form,
-        'username':username,
          }, context_instance=RequestContext(request))
