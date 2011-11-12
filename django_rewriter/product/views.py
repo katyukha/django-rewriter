@@ -5,6 +5,7 @@ from django_rewriter.product.models import Product
 from django_rewriter.product.form import ProductForm
 from django.shortcuts import render_to_response
 from django.shortcuts import get_object_or_404
+from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 
 
@@ -21,7 +22,7 @@ def add_product(request, template_name = "product/add.html"):
         form = ProductForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect("/list/")
+            return redirect("product_list")
     else:
         form = ProductForm()
 
@@ -36,8 +37,9 @@ def edit(request, product_id, template_name = "product/edit.html"):
         form = ProductForm(request.POST, instance = p)
         if form.is_valid():
             form.save()
-        redir = "/%s/" % product_id
-        return HttpResponseRedirect(redir)
+        return redirect("product_view", product_id = product_id)
+        #redir = "/%s/" % product_id
+        #return HttpResponseRedirect(redir)
     else:
         form = ProductForm(instance = p)
     return render_to_response(template_name,{

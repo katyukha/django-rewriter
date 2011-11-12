@@ -6,7 +6,7 @@
 <body>
 {% block userinfo %}
     <div id="user_info" align="right">
-	<b>Пользователь: </b><a href="{% url django_rewriter.profille.views.profileuser %}">{{ user }}</a> |
+	<b>Пользователь: </b><a href="{% url profile %}">{{ user }}</a> |
 	<a href="{% url auth_logout %}">Log out</a>
     </div>
 {% endblock %}
