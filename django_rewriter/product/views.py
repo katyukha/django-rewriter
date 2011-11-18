@@ -6,7 +6,6 @@ from django.shortcuts import render_to_response
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 from django.http import Http404
 
 
@@ -46,14 +45,14 @@ def edit(request, product_id, template_name = "product/edit.html"):
             form.save()
         return redirect("product_view", product_id = product_id)        
     else:
-        form = ProductForm(instance = p)
+        form = ProductForm(request.user.profile, instance = p)
     return render_to_response(template_name,{
                 'form':form,
                 'prod':p,
                 }, context_instance=RequestContext(request))
 
 @login_required
-def linking(request, product_id, template_name = 'product/list.html'):
+def linking(request, product_id):
     p = get_object_or_404(Product, pk=product_id)
     p.user = request.user
     p.status = 'progress'

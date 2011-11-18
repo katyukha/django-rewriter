@@ -6,6 +6,7 @@ class UserProfile(models.Model):
     user      = models.OneToOneField(User, unique=True)
     url       = models.URLField("Домашня сторінка: ", blank=True)
     user_info = models.TextField("Інформація про себе: ",blank=True)
+    is_seo    = models.BooleanField(default = False)
     
 User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
 

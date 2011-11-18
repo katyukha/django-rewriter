@@ -25,7 +25,7 @@
                              <a href="{% url product_linking  product.id %}?next_page={{current_path}}"> Взять себе </a>
                          {% endif %}
                          
-                         {% if product.status == 'progress' %}
+                         {% if product.status == 'progress'%}
                              <a href="{% url product_edit  product.id %}"> Редактировать </a>
                              <a href="{% url product_send  product.id %}"> Отправить </a>
                          {% endif %}
@@ -34,7 +34,7 @@
             {% endfor %}
             </table>
 	{% else %} 
-		Нет ни одного свободного продукта.
+		Нет ни одного продукта.
 	{% endif %}
 	
  

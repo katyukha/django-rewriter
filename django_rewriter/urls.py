@@ -6,39 +6,6 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-'''<<<<<<< HEAD
-# TODO : review urls. remove old, make them more readable.
-#<<<<<<< HEAD
-    url(r'^profile/$', 'django_rewriter.profille.views.profileuser', name = 'profile'),
-    url(r'^(?P<username>\w+)/edit/$', 'django_rewriter.profille.views.edit', name = 'user_edit'),
-    url(r'^profile/$', 'django_rewriter.profille.views.profileuser'),
-    
-    url(r'^list/$', 'django_rewriter.product.views.product_list', name='product_list'),
-    url(r'^add/$', 'django_rewriter.product.views.add_product'),
-    url(r'^(?P<product_id>\d+)/$', 'django_rewriter.product.views.product_view', name = 'product_view'),
-    url(r'^edit/(?P<product_id>\d+)/$', 'django_rewriter.product.views.edit', name = 'product_edit'),
-    url(r'^edit/(?P<product_id>\d+)/connect/$', 'django_rewriter.product.views.linking', name = 'product_linking'),
-    
-    url(r'^list/$', 'django_rewriter.product.views.product_list'),
-    url(r'^add/$', 'django_rewriter.product.views.add_product'),
-    url(r'^(?P<product_id>\d+)/$', 'django_rewriter.product.views.product_view'),
-  
-    url(r'^', include('registration.backends.simple.urls')),
-    url(r'^$', 'django_rewriter.profille.views.profileuser'),
-#=======
-    #url(r'^(?P<product_id>\d+)/$', 'django_rewriter.product.views.product_view', name = 'product_view'),
-    #url(r'^edit/(?P<product_id>\d+)/$', 'django_rewriter.product.views.edit', name = 'product_edit'),
-    #url(r'^(?P<product_id>\d+)/connect/$', 'django_rewriter.product.views.linking', name = 'product_linking'),
-    #url(r'^profile/$', 'django_rewriter.profille.views.profileuser'),
-    #url(r'^', include('registration.backends.simple.urls')),
-    #url(r'^list/$', 'django_rewriter.product.views.product_list'),
-    #url(r'^add/$', 'django_rewriter.product.views.add_product'),
-    #url(r'^(?P<product_id>\d+)/$', 'django_rewriter.product.views.product_view'),
-    #url(r'^$', 'django_rewriter.profille.views.profileuser'),
-    #url(r'^(?P<username>\w+)/edit/$', 'django_rewriter.profille.views.edit', name = 'user_edit'),
-#>>>>>>> dda843a12ca3a4992038182053ba8ca0b5574fd3
-======='''
-
     url(r'^profile/',      include('profille.urls')),
 
     url(r'^product/',      include('product.urls')),
@@ -57,7 +24,6 @@ urlpatterns = patterns('',
 
     url(r'^$',             'profille.views.profileuser', name = 'home'),
 
-#>>>>>>> 0cc22adbd16b35627dcf2c2e7529fd0e877e6605
     # Examples:
     # url(r'^$', 'django_rewriter.views.home', name='home'),
     # url(r'^django_rewriter/', include('django_rewriter.foo.urls')),
