@@ -13,4 +13,4 @@ class ProductForm(ModelForm):
 
     class Meta:
         model = Product
-        exclude = ('user', 'status', 'rating', 'is_seo')
+        exclude = ('user', 'status', 'rating')

@@ -3,12 +3,12 @@ from django.db import models
 from django.contrib.auth.models import User
 
 STATUS_CHOICES = (
-    ('draft',    u'Чорновий'),
-    ('progress', u'В роботі'),
-    ('deferred', u'Вiдкладений'),
-    ('done',     u'Виконано'),
-    ('accepted',     u'Прийнятий'),         
-    ('rejected', u'Вiдхилений')
+    ('draft',    u'Черновой'),
+    ('progress', u'В работе'),
+    ('deferred', u'Отложенный'),
+    ('done',     u'Выполнено'),
+    ('accepted',     u'Принятый'),
+    ('rejected', u'Отклонено')
 )
 
     

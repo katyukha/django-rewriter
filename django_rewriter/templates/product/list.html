@@ -3,16 +3,21 @@
 {% block title %}List{% endblock %}
 {% block content %}
         {% if owners_only %}
-            <h1>Мои товары</h1>
+            <h1>Мои продукты</h1>
         {% else %}
-            <h1>Список товаров</h1>
+            <h1>Список продуктов</h1>
         {% endif %}
         
         {% if product_list %}
-            <table class="product-list">
-            <tr>
-                <th>Товар</th><th>Оценка</th><th>Состояние</th><th>Действия</th>
-            </tr>
+            <table id="rounded-corner" >
+            <thead>
+		<tr>
+                	<th scope="col" class="rounded-company">Товар</th>
+			<th scope="col" class="rounded-q1">Оценка</th>
+			<th scope="col" class="rounded-q2">Состояние</th>
+			<th scope="col" class="rounded-q3">Действия</th>
+		</tr>
+            </thead>
 	    {% for product in product_list %}
                 <tr>
                      <td><a href="{% url product_view product_id=product.id %}">
@@ -32,6 +37,12 @@
                      </td>
 		</tr>
             {% endfor %}
+		<tfoot>
+		 <tr>
+		 <td colspan="3" class="rounded-foot-left"></td>
+		 <td class="rounded-foot-right"></td>
+		 </tr>
+		 </tfoot>
             </table>
 	{% else %} 
 		Нет ни одного продукта.

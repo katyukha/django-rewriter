@@ -10,13 +10,39 @@ body{
 	min-height: 100%;
 }
 
-#left-menu {
-    width : 230px;
-    position : absolute;
-    margin-right: 230px;
-    margin-top:25px;
-    
+ul {
+    list-style-type : none;
 }
+
+#list ul{
+    list-style-type: decimal;
+} 
+
+a {
+    text-decoration: none;
+    color: #001570;
+}
+
+a:hover {
+    color: #005599;
+}
+
+#user-info {
+    background: #001570;
+    text-color: #fff;
+    padding: 5px;
+}
+
+#left-menu {
+    background: 100px;
+    width : 240px;
+    position : absolute;
+    margin-right: 240px;
+    margin-top: 25px; 
+    height: 100%;
+    border-right: 1px solid #ccc;
+}
+
 #left-menu .menu-item a.menu-link{
     text-decoration: none;
     font-weight: bold;
@@ -31,28 +57,82 @@ body{
 
 #left-menu .menu-item a.menu-link.right{
     font-weight: normal;
-    float:right;
     padding-right:10px;
 }
 
 #left-menu #left-menu-header{
-    margin-bottom: -10;
+    margin-bottom: -10px;
 }
 
 #user-info {
     text-align: right;
+    color: #fff;
     /*float : right*/
+}
+
+#user-info a {
+    color: gray;
+}
+#user-info a:hover{
+    color: white;
 }
 
 #content {
     position:relative;
     margin-left: 230px;
-    padding-left:25px;
+    padding-left:45px;
     height:auto;
     min-height:100%;
     margin-top:10px;
     padding-top:10px;
 }
+
+
+
+
+#rounded-corner
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+
+	text-align: left;
+	border-collapse: collapse;
+}
+#rounded-corner thead th.rounded-company
+{
+	background: #b9c9fe url('/static/table-images/left.png') left -1px no-repeat;
+}
+#rounded-corner thead th.rounded-q3
+{
+	background: #b9c9fe url('/static/table-images/right.png') right -1px no-repeat;
+}
+#rounded-corner th
+{
+	padding: 8px;
+	font-weight: normal;
+	font-size: 13px;
+	color: #039;
+	background: #b9c9fe;
+}
+#rounded-corner td
+{
+	padding: 8px;
+	background: #e8edff;
+	border-top: 1px solid #fff;
+	color: #669;
+}
+#rounded-corner tfoot td.rounded-foot-left
+{
+	background: #e8edff url('/static/table-images/botleft.png') left bottom no-repeat;
+}
+#rounded-corner tfoot td.rounded-foot-right
+{
+	background: #e8edff url('/static/table-images/botright.png') right bottom no-repeat;
+}
+#rounded-corner tbody tr:hover td
+{
+	background: #d0dafd;
+}
+
 
 #footer {
    clear: both;

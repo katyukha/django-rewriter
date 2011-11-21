@@ -1,11 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h3>Ваши товары:</h3>
-        <ul>
+<h1>Профиль</h1>
+<table>
+	<tr>
+		<td>Имя: </td>
+		<td>{{user.first_name}}</td>
+	</tr>
+	<tr>
+		<td>Фамилия: </th>
+		<td>{{user.last_name}}</td>
+	</tr>
+	<tr>
+		<td>Домашняя страница: </td>
+		<td><a href="{{user.profile.url}}">{{user.profile.url}}</a></td>
+	</tr>
+	<tr>
+		<td>О себе: </td>
+		<td>{{user.profile.user_info}}</td>
+	</tr>
+</table>
+<h4>Ваши продукты:</h4>
+	<div id="list"><ul>
 	{% for p in product_list %}		
 		<li><a href="{% url product_view product_id=p.id %}">{{ p.name }}</a></li>		
 	{% endfor %}
-	</ul>
-
+	</ul></div>
 {% endblock %}
