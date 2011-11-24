@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+{% block title %}Profile{% endblock %}
 {% block content %}
 <h1>Профиль</h1>
 <table>
@@ -10,6 +11,15 @@
 	<tr>
 		<td>Фамилия: </th>
 		<td>{{user.last_name}}</td>
+	</tr>
+	<tr>
+		<td>Статус: </th>
+		<td>{% if user.profile.is_seo %}
+			SEO
+		    {% else %}
+	                Simple
+		    {% endif %}
+		</td>
 	</tr>
 	<tr>
 		<td>Домашняя страница: </td>

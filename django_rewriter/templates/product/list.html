@@ -31,7 +31,7 @@
                          {% endif %}
                          
                          {% if product.status == 'progress'%}
-                             <a href="{% url product_edit  product.id %}"> Редактировать </a>
+                             <a href="{% url product_edit  product.id %}"> Редактировать </a> |
                              <a href="{% url product_send  product.id %}"> Отправить </a>
                          {% endif %}
                      </td>

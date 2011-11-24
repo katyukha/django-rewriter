@@ -14,10 +14,10 @@ ul {
     list-style-type : none;
 }
 
-#list ul{
-    list-style-type: decimal;
-} 
-
+#list ul li{
+    font-weight: bold;
+    padding: 3px;
+}
 a {
     text-decoration: none;
     color: #001570;
@@ -131,6 +131,58 @@ a:hover {
 #rounded-corner tbody tr:hover td
 {
 	background: #d0dafd;
+}
+
+.editform tr
+{
+	width: 300px;
+	clear: left;
+	padding: 5px 0 8px 0;
+	padding-left: 155px;
+	border-bottom: 1px dotted #808080;
+}
+.editform th
+{
+	border-bottom: 1px dotted #808080;
+}
+.editform td
+{
+	border-bottom: 1px dotted #808080;
+	width: 260px;
+}
+
+.editform label
+{
+	font-size: 15px;
+	float: left;
+	width: 150px;
+}
+
+.editform input 
+{
+	width: 250px;
+	margin: 5px;
+}
+
+.editform textarea
+{
+	width:250px;
+	height:150px;
+	margin: 5px;
+}
+
+.editform .helptext
+{
+	color:#666666;
+ 	font-size:11px;
+	padding-left: 10px;
+}
+
+.editform .submit
+{
+	margin-top: 10px;
+	width: 100px;
+	margin-left: 150px;
 }
 
 
