@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}List{% endblock %}
+{% block title %}Список продуктов{% endblock %}
 {% block content %}
         {% if owners_only %}
             <h1>Мои продукты</h1>
@@ -13,16 +13,40 @@
             <thead>
 		<tr>
                 	<th scope="col" class="rounded-company">Товар</th>
+                	<th scope="col" class="rounded-q1">Требования</th>
 			<th scope="col" class="rounded-q1">Оценка</th>
 			<th scope="col" class="rounded-q2">Состояние</th>
 			<th scope="col" class="rounded-q3">Действия</th>
 		</tr>
             </thead>
 	    {% for product in product_list %}
-                <tr>
+                <tr class="product-list-line">
                      <td><a href="{% url product_view product_id=product.id %}">
                          {{ product }}
                      </a></td>
+                     <td class="product-requirements">
+                          {% if product.has_requirements %}
+                             <ul>
+                                 {% if product.required_brief_desc %}
+                                    <li>краткое описание</li>
+                                 {% endif %}
+                                 
+                                 {% if product.required_full_desc %}
+                                    <li>полное описание</li>
+                                 {% endif %}
+                                 
+                                 {% if product.required_meta_info %}
+                                    <li>мета теги</li>
+                                 {% endif %}
+                                 
+                                 {% if product.required_images_count > 0 %}
+                                    <li>количество рисунков: {{ product.required_images_count }}</li>
+                                 {% endif %}
+                             </ul>
+                          {% else %}
+                              Нет требований или требования неизвестны
+                          {% endif %}
+                     </td>
                      <td>{% if product.rating %}{{ product.rating }}{% else %}не оценено{% endif %}</td>
                      <td>{{ product.get_status_display }}</td>
                      <td>
@@ -39,7 +63,7 @@
             {% endfor %}
 		<tfoot>
 		 <tr>
-		 <td colspan="3" class="rounded-foot-left"></td>
+		 <td colspan="4" class="rounded-foot-left"></td>
 		 <td class="rounded-foot-right"></td>
 		 </tr>
 		 </tfoot>

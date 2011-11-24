@@ -1,47 +1,76 @@
 {% extends "base.html" %}
 
-{% block title %}View{% endblock %}
+{% block title %}Просмотр продукта{% endblock %}
 {% block content %}
-	<h1>{{prod.name}}</h1>
-	<table>
-		<tr>
-			<td>Краткое описание: </td>
-			<td>{{prod.brief}}</td>
-		</tr>
-		<tr>
-			<td>Полное описание: </td>
-			<td>{{prod.full_desc}}</td>
-		</tr>
-		<tr>
-			<td>Мета-заголовок: </td>
-			<td>{{prod.meta_title}}</td>
-		</tr>
-		<tr>
-			<td>Ключевые слова: </td>
-			<td>{{prod.meta_keywords}}</td>
-		</tr>
-		<tr>
-			<td>Мета-описание: </td>
-			<td>{{prod.meta_desc}}</td>
-		</tr>
-		<tr>
-			<td>Оценка: </td>
-			<td>{% if not prod.rating %} не оценено 
-			    {% else %} {{prod.rating}} {% endif %}
-			</td>
-		</tr>
-		<tr>
-			<td>Статус: </td>
-			<td>{{prod.get_status_display}}</td>
-		</tr>
-		<tr>
-			{% if prod.status == 'draft' %}
-				<td><br /><a href="{% url product_linking  prod.id %}">Взять себе</a></td>
-			{% endif %}
-			{% if prod.status == 'progress' %}
-				<td><br /><a href="{% url product_edit  prod.id %}">Редактировать</a></td>
-				<td><br /><a href="{% url product_send  prod.id %}">Отправить</a></td>	
-		        {% endif %}
-		</tr>
-	</table>
+	<h1 id="product-view-header">{{prod.name}}</h1>
+	<div id="product-view">
+        	<table id="product-view-table">
+	        	<tr>
+	        		<td class="product-view-label">Код продукта: </td>
+	        		<td>{{prod.code}}</td>
+	        	</tr>
+	        	<tr>
+	        		<td class="product-view-label">Краткое описание: </td>
+	        		<td>{{prod.brief_desc}}</td>
+	        	</tr>
+	        	<tr>
+	        		<td class="product-view-label">Полное описание: </td>
+	        		<td>{{prod.full_desc}}</td>
+	        	</tr>
+	        	<tr>
+	        		<td class="product-view-label">Мета-заголовок: </td>
+	        		<td>{{prod.meta_title}}</td>
+	        	</tr>
+	        	<tr>
+	        		<td class="product-view-label">Ключевые слова: </td>
+	        		<td>{{prod.meta_keywords}}</td>
+	        	</tr>
+	        	<tr>
+	        		<td class="product-view-label">Мета-описание: </td>
+	        		<td>{{prod.meta_desc}}</td>
+	        	</tr>
+	        	<tr>
+	        		<td class="product-view-label product-rating">Оценка: </td>
+	        		<td>{% if not prod.rating %} не оценено 
+	        		    {% else %} {{prod.rating}} {% endif %}
+	        		</td>
+	        	</tr>
+	        	<tr>
+	        		<td class="product-view-label product-status">Статус: </td>
+	        		<td>{{prod.get_status_display}}</td>
+	        	</tr>
+	        	<tr id="product-view-links-line">
+	        		{% if prod.status == 'draft' %}
+	        			<td><br /><a href="{% url product_linking  prod.id %}">Взять себе</a></td>
+	        		{% endif %}
+	        		{% if prod.status == 'progress' %}
+	        			<td><br /><a href="{% url product_edit  prod.id %}">Редактировать</a></td>
+	        			<td><br /><a href="{% url product_send  prod.id %}">Отправить</a></td>	
+	        	        {% endif %}
+	        	</tr>
+	        </table>
+	        <div class="product-requirements">
+	            {% if prod.has_requirements %}
+                         <ul>
+                         {% if prod.required_brief_desc %}
+                             <li>краткое описание</li>
+                         {% endif %}
+
+                         {% if prod.required_full_desc %}
+                             <li>полное описание</li>
+                         {% endif %}
+
+                         {% if prod.required_meta_info %}
+                             <li>мета теги</li>
+                         {% endif %}
+
+                         {% if prod.required_images_count > 0 %}
+                             <li>количество рисунков: {{ prod.required_images_count }}</li>
+                         {% endif %}
+                         </ul>
+                    {% else %}
+                         Нет требований или требования неизвестны
+                    {% endif %}
+	        </div>
+        </div>
 {% endblock %}

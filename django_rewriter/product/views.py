@@ -17,20 +17,21 @@ def product_list(request, status = None, owners_only = False, template_name = "p
     if owners_only:
        ls = ls.filter(user = request.user)
     return render_to_response(template_name, {
-              'product_list' : ls,
-              'owners_only'  : owners_only,
-              'current_path' : request.path,
+              'product_list'  : ls,
+              'owners_only'   : owners_only,
+              'current_path'  : request.path,
+              'filter_status' : status,
               }, context_instance=RequestContext(request))
 
 @login_required
 def add_product(request, template_name = "product/add.html"):
     if request.method == 'POST':
-        form = ProductForm(request.POST)
+        form = ProductForm(request.user.profile, request.POST)
         if form.is_valid():
             form.save()
             return redirect("product_list")
     else:
-        form = ProductForm()
+        form = ProductForm(request.user.profile)
 
     return render_to_response(template_name,{
                 'form':form,
@@ -40,7 +41,7 @@ def add_product(request, template_name = "product/add.html"):
 def edit(request, product_id, template_name = "product/edit.html"):
     p = get_object_or_404(Product, pk=product_id)
     if request.method == 'POST':
-        form = ProductForm(request.user.profile, request.POST, request.FILES, instance = p)
+        form = ProductForm(request.user.profile, request.POST, instance = p)
         if form.is_valid():
             form.save()
         return redirect("product_view", product_id = product_id)        
@@ -73,7 +74,7 @@ def product_view(request, product_id, template_name = "product/view.html"):
 @login_required
 def product_send(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
-    if product.user != request.user:  # if somebody trye to send not own product
+    if product.user != request.user:  # if somebody tryes to send not own product
        raise Http404
     product.status = 'done'
     product.save()
