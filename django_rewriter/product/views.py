@@ -17,9 +17,10 @@ def product_list(request, status = None, owners_only = False, template_name = "p
     if owners_only:
        ls = ls.filter(user = request.user)
     return render_to_response(template_name, {
-              'product_list' : ls,
-              'owners_only'  : owners_only,
-              'current_path' : request.path,
+              'product_list'  : ls,
+              'owners_only'   : owners_only,
+              'current_path'  : request.path,
+              'filter_status' : status,
               }, context_instance=RequestContext(request))
 
 @login_required

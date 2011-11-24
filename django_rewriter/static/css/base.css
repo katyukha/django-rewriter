@@ -29,8 +29,17 @@ a:hover {
 
 #user-info {
     background: #001570;
-    text-color: #fff;
     padding: 5px;
+    text-align: right;
+    color: #fff;
+}
+
+#user-info a {
+    color: gray;
+}
+
+#user-info a:hover{
+    color: white;
 }
 
 #left-menu {
@@ -64,18 +73,6 @@ a:hover {
     margin-bottom: -10px;
 }
 
-#user-info {
-    text-align: right;
-    color: #fff;
-    /*float : right*/
-}
-
-#user-info a {
-    color: gray;
-}
-#user-info a:hover{
-    color: white;
-}
 
 #content {
     position:relative;
@@ -86,9 +83,6 @@ a:hover {
     margin-top:10px;
     padding-top:10px;
 }
-
-
-
 
 #rounded-corner
 {
@@ -133,12 +127,62 @@ a:hover {
 	background: #d0dafd;
 }
 
+.product-list-line .product-requirements ul{
+        list-style-position: outside;
+        list-style-type: circle;
+}
+
+.product-list-line .product-requirements li {
+        font-size: 11px;
+}
+
+#product-view-table {
+        float : left;
+        margin-right: 240px;
+}
+#product-view-table tr{
+        margin: 5px 5px 5px 5px;
+       
+}
+
+#product-view-table .product-view-label{
+        width: 200px ;
+        font-weight: bold;
+}
+
+#product-view .product-requirements{
+        right:5px;
+        top:60px;
+        margin-bottom:30px;
+        padding-top:15px;
+        float:right;
+        background: #b9c9fe;
+        height:auto;
+        position:absolute;
+        width:230px;
+}
+
+#product-view .product-requirements ul {
+        list-style-position: outside;
+        list-style-type: circle;       	
+        padding-right: 5px;
+}
+
+#product-view .product-requirements li {
+        font-weight: normal;
+	font-size: 13px;
+	color: #039;
+}
 
 #footer {
    clear: both;
+   margin-top:25px;
+   margin-bottom:5px;
    bottom: 0px;
-   height: 30px;	
+   height: 25px;	
    position: static;
-   width: 100%;
    text-align: center;
+   background: #001570;
+   color: #73DF90;
+   padding: 5px;
 }
