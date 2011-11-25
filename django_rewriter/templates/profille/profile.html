@@ -6,11 +6,11 @@
 <table>
 	<tr>
 		<td>Имя: </td>
-		<td>{{user.first_name}}</td>
+		<td>{% if user.first_name %}{{user.first_name}}{% else %}---{%endif%}</td>
 	</tr>
 	<tr>
 		<td>Фамилия: </th>
-		<td>{{user.last_name}}</td>
+		<td>{% if user.last_name %}{{user.last_name}}{% else %}---{%endif%}</td>
 	</tr>
 	<tr>
 		<td>Статус: </th>
@@ -23,17 +23,19 @@
 	</tr>
 	<tr>
 		<td>Домашняя страница: </td>
-		<td><a href="{{user.profile.url}}">{{user.profile.url}}</a></td>
+		<td>{% if user.profile.url %}<a href="{{user.profile.url}}">{{user.profile.url}}</a>{% else %}---{%endif%}</td>
 	</tr>
 	<tr>
 		<td>О себе: </td>
-		<td>{{user.profile.user_info}}</td>
+		<td>{% if user.profile.user_info %}{{user.profile.user_info}}{% else %}---{%endif%}</td>
 	</tr>
 </table>
 <h4>Ваши продукты:</h4>
 	<div id="list"><ul>
 	{% for p in product_list %}		
-		<li><a href="{% url product_view product_id=p.id %}">{{ p.name }}</a></li>		
+		<li><a href="{% url product_view product_id=p.id %}">{{ p.name }}</a></li>
+	{% empty %}
+		Не выбрано ни одного продукта.			
 	{% endfor %}
 	</ul></div>
 {% endblock %}

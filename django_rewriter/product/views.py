@@ -41,12 +41,12 @@ def add_product(request, template_name = "product/add.html"):
 def edit(request, product_id, template_name = "product/edit.html"):
     p = get_object_or_404(Product, pk=product_id)
     if request.method == 'POST':
-        form = ProductForm(request.user.profile, request.POST, instance = p)
+        form = ProductForm(request.user.profile, p, request.POST, instance = p)
         if form.is_valid():
             form.save()
         return redirect("product_view", product_id = product_id)        
     else:
-        form = ProductForm(request.user.profile, instance = p)
+        form = ProductForm(request.user.profile, p, instance = p)
     return render_to_response(template_name,{
                 'form':form,
                 'prod':p,

@@ -14,10 +14,9 @@
 
  <h1>Авторизация</h1>
  <p>Введите имя пользователя и пароль для входа в систему</p>
- {{ form.username.label_tag }}
- {{ form.username }}
- {{ form.password.label_tag }}
- {{ form.password }}
+ <table id="auth-form-table">
+    {{ form.as_table }}
+ </table>
  <input class="submit" type="submit" value="Вход" />
  <input type="hidden" name="next" value="{{ next }}" />
  <div class="spacer"></div>
@@ -25,6 +24,6 @@
 </form>
 </div>
 {% else %}
-<a href="{% url django_rewriter.profille.views.profileuser %}">{{user}}</a>, you're already in system!
+<a href="{% url profile %}">{{user}}</a>, you're already in system!
 {% endif %}
 {% endblock %}

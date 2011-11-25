@@ -3,7 +3,7 @@
 {% block title %}Edit{% endblock %}
 {% block content %}
 	<h1>Редактирование профиля</h1> 
-	<form action="{% url profile_edit %}" method="POST">
+	<form class="editform" action="{% url profile_edit %}" method="POST">
 	{% csrf_token %}
 	<table>
             {{ form.as_table }}
