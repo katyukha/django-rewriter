@@ -4,54 +4,85 @@
 {% block content %}
 	<h1 id="product-view-header">{{prod.name}}</h1>
 	<div id="product-view">
-        	<table id="product-view-table">
-	        	<tr>
-	        		<td class="product-view-label">Код продукта: </td>
-	        		<td>{{prod.code}}</td>
-	        	</tr>
-	        	<tr>
-	        		<td class="product-view-label">Краткое описание: </td>
-	        		<td>{{prod.brief_desc}}</td>
-	        	</tr>
-	        	<tr>
-	        		<td class="product-view-label">Полное описание: </td>
-	        		<td>{{prod.full_desc}}</td>
-	        	</tr>
-	        	<tr>
-	        		<td class="product-view-label">Мета-заголовок: </td>
-	        		<td>{{prod.meta_title}}</td>
-	        	</tr>
-	        	<tr>
-	        		<td class="product-view-label">Ключевые слова: </td>
-	        		<td>{{prod.meta_keywords}}</td>
-	        	</tr>
-	        	<tr>
-	        		<td class="product-view-label">Мета-описание: </td>
-	        		<td>{{prod.meta_desc}}</td>
-	        	</tr>
-	        	<tr>
-	        		<td class="product-view-label product-rating">Оценка: </td>
-	        		<td>{% if not prod.rating %} не оценено 
-	        		    {% else %} {{prod.rating}} {% endif %}
-	        		</td>
-	        	</tr>
-	        	<tr>
-	        		<td class="product-view-label product-status">Статус: </td>
-	        		<td>{{prod.get_status_display}}</td>
-	        	</tr>
-	        	<tr id="product-view-links-line">
-	        		{% if prod.status == 'draft' %}
-	        			<td><br /><a href="{% url product_linking  prod.id %}">Взять себе</a></td>
-	        		{% endif %}
-	        		{% if prod.status == 'progress' %}
-	        			<td><br /><a href="{% url product_edit  prod.id %}">Редактировать</a></td>
-	        			<td><br /><a href="{% url product_send  prod.id %}">Отправить</a></td>	
-	        	        {% endif %}
-
-	        	</tr>
-	        </table>
-	        <div class="product-requirements">
+            <div class="container">
+	        <div class="item product-code">
+	                <div class="label">Код продукта: </div>
+	                <div class="value one-line">
+	                    {{ prod.code }}
+	                </div>
+	        </div>
+	        
+	        <div class="item">
+	                <div class="label">Краткое описание: </div>
+	                <div class="value big-text">
+	                    {{ prod.brief_desc }}
+	                </div>
+	        </div>
+	        
+	        <div class="item">
+	                <div class="label">Полное описание: </div>
+	                <div class="value big-text">
+	                    {{ prod.full_desc }}
+	                </div>
+	        </div>
+	        
+	        <div class="item">
+	                <div class="label">Мета-заголовок: </div>
+	                <div class="value one-line">
+	                    {{ prod.meta_title }}
+	                </div>
+	        </div>
+	        
+	        <div class="item">
+	                <div class="label">Ключевые слова: </div>
+	                <div class="value big_text">
+	                    {{ prod.meta_keywords }}
+	                </div>
+	        </div>
+	        
+	        <div class="item">
+	                <div class="label">Мета-описание: </div>
+	                <div class="value big_text">
+	                    {{ prod.meta_desc }}
+	                </div>
+	        </div>
+	        
+	        <div class="item">
+	                <div class="label">Оценка: </div>
+	                <div class="value one-line">
+                              {% if not prod.rating %}
+                                   не оценено 
+	                      {% else %}
+	                           {{prod.rating}} 
+	                      {% endif %}
+	                </div>
+	        </div>
+	        
+	        <div class="item">
+	                <div class="label">Статус: </div>
+	                <div class="value one-line">
+                              {{prod.get_status_display}}
+	                </div>
+	        </div>
+	        
+	        <div class="item links">
+	                {# <div class="label for-actions">Действия</div> #}
+	                {# TODO : Separate this links in right column after requirements #}
+	                {# Винести стан і дії назразок вимог вправо. як окремі елементи(квадратики) #}
+	                <div class="value links">
+ 	                {% if prod.status == 'draft' %}
+                                <a class="link" href="{% url product_linking  prod.id %}">Взять себе</a>
+        		{% endif %}
+        		{% if prod.status == 'progress' %}
+        			<a class="link" href="{% url product_edit  prod.id %}">Редактировать</a>
+        			<a class="link" href="{% url product_send  prod.id %}">Отправить</a>
+        	        {% endif %}
+        	        </div>
+	        </div>
+	    </div>  
+            <div class="product-requirements">
 	            {% if prod.has_requirements %}
+	                 <p>Требования:</p>
                          <ul>
                          {% if prod.required_brief_desc %}
                              <li>краткое описание</li>
@@ -72,6 +103,6 @@
                     {% else %}
                          Нет требований или требования неизвестны
                     {% endif %}
-	        </div>
+	    </div>
         </div>
 {% endblock %}

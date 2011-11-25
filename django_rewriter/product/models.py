@@ -60,6 +60,7 @@ class Product(models.Model):
         return    self.required_full_desc or self.required_brief_desc\
                or self.required_meta_info or self.required_images_count >0\
                or  False
+
     def save(self, *args, **kwargs):
         self.sync = False
         return super(Product, self).save(*args, **kwargs)
