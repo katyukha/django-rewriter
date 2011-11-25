@@ -2,27 +2,36 @@
 
 {% block userinfo %}{% endblock %}
 {% block content %}
-{% if not user.is_authenticated %}
-<div id="stylized" class="authform">
-<form id="form" method="post" action="">
-{% csrf_token %}
 
- <h1>Регистрация</h1>
- <p>Введите регистрационные данные</p>
+    {% if not user.is_authenticated %}
+    <div id="stylized" class="authform">
+        <form id="form" method="post" action="">
+            {% csrf_token %}
+
+            <h1>Регистрация</h1>
+            <p>Введите регистрационные данные</p>
+
+            <table id="registration-form-table">
+            {{ form.as_table }}
+            </table>
+    
+            <input type="submit" value="Регистрация"  class="submit"/>
+            <div class="spacer"></div>
+        </form>
+    </div>
+    {% else %}
+        <a href="{% url profile %}">{{user}}</a>, you're already in system!
+    {% endif %}
+{% endblock %}
+
+
+
 <dl class="register">
-{% for field in form %}
+    {% for field in form %}
     <dt>{{ field.label_tag }}</dt>
     <dd class=clearfix">{{ field }}
     {% if field.help_text %}<div class="clearfix">{{ field.help_text }}</div>{% endif %}
     {% if field.errors %}<div class="myerrors clearfix">{{ field.errors }}</div>{% endif %}</dd>
 {% endfor %}
 </dl>
-<input type="submit" value="Регистрация"  class="submit"/>
- <div class="spacer"></div>
-</form>
-</div>
-{% else %}
-<a href="{% url profile %}">{{user}}</a>, you're already in system!
-{% endif %}
-{% endblock %}
 
