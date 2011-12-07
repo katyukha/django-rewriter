@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+{% block title %}Редактирование картинок{% endblock %}
+{% block content %}
+	<h2>{{product.name}}</h2>
+	{% thumbnail photo.image "200x200" crop="center" as im %}
+    			<a href="{{MEDIA_URL}}{{photo.image}}" ><img class="edit-image" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"/></a>
+	{% endthumbnail %}
+	<form enctype="multipart/form-data" action="{% url photo_edit product.id photo.id %}" method="POST">
+	{% csrf_token %}
+	<p>Позиция: {{form.position}}</p>
+	<p>Изменить: <input type="file" name="image" id="id_image" /></p>
+	<p class="f_size">{{form.to_del}} Удалить</p>
+	{{form.product}}	
+	<input class="submit" type="submit" value="Сохранить" />
+	</form>
+{% endblock %}

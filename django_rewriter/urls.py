@@ -1,5 +1,6 @@
 from django.conf.urls.defaults import patterns, include, url
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf import settings
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -24,6 +25,7 @@ urlpatterns = patterns('',
 
     url(r'^$',             'profille.views.profileuser', name = 'home'),
 
+    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     # Examples:
     # url(r'^$', 'django_rewriter.views.home', name='home'),
     # url(r'^django_rewriter/', include('django_rewriter.foo.urls')),

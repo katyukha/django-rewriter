@@ -3,7 +3,7 @@
 {% block title %}Редактирование продукта{% endblock %}
 {% block content %}
 	<h1>{{prod.name}}</h1> 
-	<form class="editform" enctype="multipart/form-data" action="{% url product_edit prod.id %}" method="POST">
+	<form class="editform" action="{% url product_edit prod.id %}" method="POST">
 	<table>{% csrf_token %}
 	{{ form.as_table }}</table>
 	<input class="submit" type="submit" value="Сохранить" />

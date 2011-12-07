@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Загрузка картинок{% endblock %}
+{% block content %}
+	<h2>{{product.name}}</h2>
+	<form class="editform" enctype="multipart/form-data" action="{% url photo_add product.id %}" method="POST">
+	<table>{% csrf_token %}
+	{{ form.as_table }}</table>
+	<input class="submit" type="submit" value="Сохранить" />
+	</form>
+{% endblock %}

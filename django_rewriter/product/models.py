@@ -2,6 +2,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 STATUS_CHOICES = (
     ('draft',    u'Черновой'),
     ('progress', u'В работе'),
@@ -65,4 +66,8 @@ class Product(models.Model):
         self.sync = False
         return super(Product, self).save(*args, **kwargs)
 
-        
+class Photo(models.Model):
+    product = models.ForeignKey(Product, blank=True, null=True)
+    position = models.IntegerField("Позиция", blank=True)
+    to_del = models.BooleanField(default=False)
+    image = models.ImageField("Фотография", upload_to='photos', blank=True)

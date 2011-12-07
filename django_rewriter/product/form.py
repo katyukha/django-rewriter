@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from django_rewriter.product.models import Product
+from django_rewriter.product.models import Product, Photo
 from django.forms.widgets import HiddenInput
 
 class ProductForm(ModelForm):
@@ -20,3 +20,14 @@ class ProductForm(ModelForm):
         exclude = ( 'user', 'status', 'rating', 'required_full_desc',
                     'required_brief_desc', 'required_meta_info',
                     'required_images_count', 'sync')
+
+class PhotoForm(ModelForm):
+
+    def __init__(self, hide, *args, **kwargs):
+        super(PhotoForm, self).__init__(*args, **kwargs)
+        self.fields['product'].widget = HiddenInput()
+        if hide:
+            self.fields['to_del'].widget = HiddenInput()
+        
+    class Meta:
+        model = Photo
