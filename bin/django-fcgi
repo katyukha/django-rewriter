@@ -1,0 +1,40 @@
+#!/bin/bash
+F=`readlink -f $0`
+BIN_DIR=`dirname $F`
+DJANGO=$BIN_DIR/django
+
+PIDFILE=$BIN_DIR/django.pid
+PORTFILE=$BIN_DIR/django.port
+
+echo "pidfile = $PIDFILE"
+echo "django = $DJANGO"
+echo "bin dir = $BIN_DIR"
+
+case "$1" in
+    "stop" )
+        if [ -f $PIDFILE ]; then
+            kill `cat -- $PIDFILE`
+            rm -f -- $PIDFILE
+        fi
+    ;;
+    "" | "fg" )
+        if [ -f $PIDFILE ]; then
+            kill `cat -- $PIDFILE`
+            rm -f -- $PIDFILE
+        fi
+
+        if [ ! -f $PORTFILE ]; then
+            echo "Port file not found: $PORTFILE"
+            exit 1
+        else
+            PORT=`cat -- $PORTFILE`
+            echo "port = $PORT"
+        fi
+
+        if [ "$1" = "fg" ]; then
+            $DJANGO runfcgi method=threaded host=127.0.0.1 port=$PORT pidfile=$PIDFILE daemonize=false
+        else
+            $DJANGO runfcgi method=threaded host=127.0.0.1 port=$PORT pidfile=$PIDFILE
+        fi
+esac
+

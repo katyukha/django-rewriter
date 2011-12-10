@@ -9,6 +9,7 @@ sys.path[0:0] = [
                    path.join(PROJECT_DIR,     'django_rewriter'), 
                    path.join(DJANGO_DIR,      'Django-1.3'),
                    path.join(THIRD_PARTY_DIR, 'django-registration'),
+                   path.join(THIRD_PARTY_DIR, 'sorl-thumbnail'),
 ]
 
 import settings
