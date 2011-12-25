@@ -6,3 +6,10 @@
 *.port
 *.pid
 django_rewriter/media/*
+.DS_Store
+.~*#
+*.swp
+*.swo
+*.swn
+*.orig
+*.egg-info
