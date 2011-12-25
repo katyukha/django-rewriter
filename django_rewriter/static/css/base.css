@@ -14,6 +14,10 @@ ul {
     list-style-type : none;
 }
 
+.inner-right {
+    text-align: right;
+}
+
 #list ul li{
     font-weight: bold;
     padding: 3px;
@@ -159,54 +163,79 @@ a:hover {
 	background: #d0dafd;
 }
 /* ---------------------------------------------- product-table ----------------------- */
-/* ---------------------------------------------- editform ----------------------- */
 
-.editform tr
+/* ---------------------------------------------- poroduct-edit-form------------------- */
+#product-edit-header {
+        padding:5px;
+        background-color: #B9C9FE;
+        border-color: #234799;
+        border-radius: 10px 10px 10px 10px;
+        border-width: 2px;
+        border-style: solid;
+        margin-right: 245px;
+}
+
+.product-edit-form {
+        border-color: #234799;
+        border-radius: 17px 17px 17px 17px;
+        border-width: 2px;
+        border-style: solid;
+        background-color: #B9C9FE;
+        margin-right: 245px;
+}
+
+.product-edit-form table {
+        width:100%;
+}
+
+.product-edit-form tr
 {
-	width: 300px;
 	clear: left;
 	padding: 5px 0 8px 0;
 	padding-left: 155px;
 	border-bottom: 1px dotted #808080;
 }
-.editform th
+.product-edit-form th
 {
 	border-bottom: 1px dotted #808080;
+	text-align: left;
+	width: 200px;
 }
-.editform td
+.product-edit-form td
 {
 	border-bottom: 1px dotted #808080;
-	width: 260px;
+	padding-right:20px;
 }
 
-.editform label
+.product-edit-form label
 {
 	font-size: 15px;
 	float: left;
 	width: 150px;
 }
 
-.editform input 
+.product-edit-form input 
 {
-	width: 250px;
+	width: 100%;
 	margin: 5px;
+
 }
 
-.editform textarea
+.product-edit-form textarea
 {
-	width:250px;
+	width:100%;
 	height:150px;
 	margin: 5px;
 }
 
-.editform .submit
+.product-edit-form .submit
 {
 	margin-top: 10px;
 	width: 100px;
-	margin-left: 150px;
+	margin-right: 20px;
 }
 
-/* ---------------------------------------------- editform ----------------------- */
+/* -----------------------------------------product-edit-form----------------------- */
 
 .product-list-line .product-requirements ul{
         list-style-position: outside;
@@ -217,7 +246,7 @@ a:hover {
         font-size: 11px;
 }
 
-
+/* ----------------------------------------product-view------------------------------- */
 #product-view-header {
         padding:5px;
         background-color: #B9C9FE;
@@ -356,7 +385,7 @@ a:hover {
 	font-size: 13px;
 	color: #039;
 }
-
+/* -----------------------------------------end-product-view------------------*/
 
 /* ----------------------------------------------auth ----------------------- */
  .authform{
