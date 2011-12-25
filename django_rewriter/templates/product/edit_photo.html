@@ -3,16 +3,42 @@
 
 {% block title %}Редактирование картинок{% endblock %}
 {% block content %}
-	<h2>{{product.name}}</h2>
-	{% thumbnail photo.image "200x200" crop="center" as im %}
-    			<a href="{{MEDIA_URL}}{{photo.image}}" ><img class="edit-image" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"/></a>
-	{% endthumbnail %}
-	<form enctype="multipart/form-data" action="{% url photo_edit product.id photo.id %}" method="POST">
-	{% csrf_token %}
-	<p>Позиция: {{form.position}}</p>
-	<p>Изменить: <input type="file" name="image" id="id_image" /></p>
-	<p class="f_size">{{form.to_del}} Удалить</p>
-	{{form.product}}	
-	<input class="submit" type="submit" value="Сохранить" />
-	</form>
+	<h1 class="styled-header">{{product.name}}</h1>
+	
+            <form enctype="multipart/form-data" class="styled-block-center editform image-edit"
+                  action="{% url photo_edit product.id photo.id %}" method="POST">
+                 {% csrf_token %}
+                 {{form.product}}
+                 <table>
+                     <tr>
+                         <td rowspan="3">
+
+                                 {% thumbnail photo.image "150x150" crop="center" as im %}
+                         		<a href="{{MEDIA_URL}}{{photo.image}}" >
+                         		     <img class="edit-image" src="{{ im.url }}" 
+                         		          width="{{ im.width }}" height="{{ im.height }}"/>
+                         		</a>
+                                 {% endthumbnail %}
+                         </td>
+                         <th>{{ form.position.label_tag }}</th>
+                         <td>{{ form.position }}</td>
+                     </tr>
+                     <tr>
+                         <th><label for="id_to_del">Удалить:</label></th>
+                         <td>{{ form.to_del }}</td>
+                     </tr>
+                     <tr>
+                         <th><label for="id_image">Изменить:</label></th>
+                         <td><input type="file" name="image" id="id_image" /></td>
+                     </tr>
+
+                 </table>
+                 <!--<p>Позиция: {{form.position}}</p>
+                 <p>Изменить: <input type="file" name="image" id="id_image" /></p>
+                 <p class="f_size">{{form.to_del}} Удалить</p>
+                 {{form.product}}	!-->
+                 <div class="inner-right">
+                     <input class="submit" type="submit" value="Сохранить" />
+                 </div>
+            </form>
 {% endblock %}

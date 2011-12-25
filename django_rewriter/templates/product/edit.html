@@ -3,9 +3,9 @@
 {% block title %}Редактирование продукта{% endblock %}
 {% block content %}
       
-	<h1 id="product-edit-header">{{prod.name}}</h1> 
+	<h1 class="styled-header">{{prod.name}}</h1> 
 
-	<form class="product-edit-form" action="{% url product_edit prod.id %}" method="POST">
+	<form class="styled-block-center editform" action="{% url product_edit prod.id %}" method="POST">
             {% csrf_token %}
             <table>
                  {{ form.as_table }}

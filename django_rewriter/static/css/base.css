@@ -72,12 +72,6 @@ a:hover {
 	margin-top: 20px;
 }
 
-.edit-image{
-	float:left;
-	border: 2px solid #001570;
-	margin-right: 15px;
-}
-
 #left-menu .menu-item a.menu-link{
     text-decoration: none;
     font-weight: bold;
@@ -117,6 +111,26 @@ a:hover {
     margin-top:10px;
     padding-top:10px;
 }
+
+.styled-header {
+        padding:5px;
+        background-color: #B9C9FE;
+        border-color: #234799;
+        border-radius: 10px 10px 10px 10px;
+        border-width: 2px;
+        border-style: solid;
+        margin-right: 245px;
+}
+
+.styled-block-center {
+        border-color: #234799;
+        border-radius: 17px 17px 17px 17px;
+        border-width: 2px;
+        border-style: solid;
+        background-color: #B9C9FE;
+        margin-right: 245px;
+}
+
 
 /* ---------------------------------------------- product-table ----------------------- */
 
@@ -164,78 +178,78 @@ a:hover {
 }
 /* ---------------------------------------------- product-table ----------------------- */
 
-/* ---------------------------------------------- poroduct-edit-form------------------- */
-#product-edit-header {
-        padding:5px;
-        background-color: #B9C9FE;
-        border-color: #234799;
-        border-radius: 10px 10px 10px 10px;
-        border-width: 2px;
-        border-style: solid;
-        margin-right: 245px;
-}
-
-.product-edit-form {
-        border-color: #234799;
-        border-radius: 17px 17px 17px 17px;
-        border-width: 2px;
-        border-style: solid;
-        background-color: #B9C9FE;
-        margin-right: 245px;
-}
-
-.product-edit-form table {
+/* ---------------------------------------------- edit-form---------------------------- */
+.editform table {
         width:100%;
 }
 
-.product-edit-form tr
+.editform tr
 {
 	clear: left;
 	padding: 5px 0 8px 0;
 	padding-left: 155px;
 	border-bottom: 1px dotted #808080;
 }
-.product-edit-form th
+.editform th
 {
 	border-bottom: 1px dotted #808080;
 	text-align: left;
-	width: 200px;
+	width: 150px;
 }
-.product-edit-form td
+.editform td
 {
 	border-bottom: 1px dotted #808080;
 	padding-right:20px;
 }
 
-.product-edit-form label
+.editform label
 {
 	font-size: 15px;
 	float: left;
 	width: 150px;
 }
 
-.product-edit-form input 
+.editform input 
 {
 	width: 100%;
 	margin: 5px;
 
 }
 
-.product-edit-form textarea
+.editform input[type='file']
+{
+	margin: 5px;
+	text-align:right;
+
+}
+
+.editform textarea
 {
 	width:100%;
 	height:150px;
 	margin: 5px;
 }
 
-.product-edit-form .submit
+.editform .submit
 {
 	margin-top: 10px;
 	width: 100px;
 	margin-right: 20px;
 }
 
-/* -----------------------------------------product-edit-form----------------------- */
+.edit-image{
+	float:left;
+	border: 2px solid #001570;
+	margin-right: 15px;
+	margin-left:10px;
+	margin-top:10px;
+	border-color: #234799;
+        border-radius: 13px 13px 13px 13px;
+        border-style: solid;
+        border-width: 2px;
+}
+
+/* -----------------------------------------editform----------------------- */
 
 .product-list-line .product-requirements ul{
         list-style-position: outside;
@@ -274,10 +288,16 @@ a:hover {
 
 #product-view-images .image{
 	margin:5px;
+	border-radius: 10px 10px 10px 10px;
+        border-width: 0px;
+        width:95px;
+        height:95px;
 }
 #product-view-images .image:hover{
-	border:solid #234799;
-	
+	width:100px;
+	height:100px;
+	margin-bottom:0;
+	margin-right:0;
 }
 #product-view-images p{
 	text-align: center;

@@ -2,10 +2,17 @@
 
 {% block title %}Загрузка картинок{% endblock %}
 {% block content %}
-	<h2>{{product.name}}</h2>
-	<form class="editform" enctype="multipart/form-data" action="{% url photo_add product.id %}" method="POST">
-	<table>{% csrf_token %}
-	{{ form.as_table }}</table>
-	<input class="submit" type="submit" value="Сохранить" />
+	<h1 class="styled-header">{{product.name}}</h1>
+	<form class="styled-block-center editform"
+	      enctype="multipart/form-data" 
+	      action="{% url photo_add product.id %}" 
+	      method="POST">
+             {% csrf_token %}
+             <table>
+                  {{ form.as_table }}
+             </table>
+             <div class="inner-right">
+                 <input class="submit" type="submit" value="Сохранить" />
+             </div>
 	</form>
 {% endblock %}

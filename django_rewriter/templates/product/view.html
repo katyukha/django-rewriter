@@ -6,18 +6,22 @@
 {% block content %}
 	<h1 id="product-view-header">{{prod.name}}</h1>
 	<div id="product-view-images">
-			<div class="images-block">
-			{% for photo in photos %}
-			{% thumbnail photo.image "100x100" crop="center" as im %}
-    			<a class="a-img" href="{% url photo_edit prod.id photo.id %}" ><img class="image" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"/></a>
-			{% endthumbnail %}
-			{% empty %}
-			<p>Нет ни одного изображения для этого товара.</p>
-			{% endfor %}
-			</div>
-			{% if prod.status == 'progress' and prod.required_images_count > len  %}
-				<div class="item links"><div class="value links"><a class="link" href="{% url photo_add prod.id %}">Добавить</a></div></div>
-			{% endif %}
+	     <div class="images-block">
+		 {% for photo in photos %}
+                     {% thumbnail photo.image "100x100" crop="center" as im %}
+                        <a class="a-img" href="{% url photo_edit prod.id photo.id %}" ><img class="image" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"/></a>
+                     {% endthumbnail %}
+                 {% empty %}
+                     <p>Нет ни одного изображения для этого товара.</p>
+                 {% endfor %}
+             </div>
+             {% if prod.status == 'progress' and prod.required_images_count > len  %}
+                  <div class="item links">
+                      <div class="value links">
+                           <a class="link" href="{% url photo_add prod.id %}">Добавить</a>
+                      </div>
+                  </div>
+             {% endif %}
 					
 	</div>
 	<div id="product-view">
