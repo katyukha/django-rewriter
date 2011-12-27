@@ -12,3 +12,5 @@
 *.swn
 *.orig
 *.egg-info
+django_rewriter/local_settings.py
+
