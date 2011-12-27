@@ -6,6 +6,7 @@
 *.port
 *.pid
 django_rewriter/media/*
+django_rewriter/static_collection
 .DS_Store
 .~*#
 *.swp
