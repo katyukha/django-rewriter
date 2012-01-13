@@ -83,7 +83,7 @@ def product_send(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     if product.user != request.user:  # if somebody tryes to send not own product
        raise Http404
-    product.status = 'done'
+    product.status = 'check'
     product.save()
     return redirect("product_view", product_id = product_id)
 

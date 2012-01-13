@@ -8,7 +8,8 @@ STATUS_CHOICES = (
     ('progress', u'В работе'),
     ('deferred', u'Отложенный'),
     ('done',     u'Выполнено'),
-    ('accepted',     u'Принятый'),
+    ('check',    u'Проверяеться'),
+    ('accepted', u'Принятый'),
     ('rejected', u'Отклонено')
 )
 
