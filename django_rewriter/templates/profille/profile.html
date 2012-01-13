@@ -22,12 +22,8 @@
 		</td>
 	</tr>
 	<tr>
-		<td>Домашняя страница: </td>
-		<td>{% if user.profile.url %}<a href="{{user.profile.url}}">{{user.profile.url}}</a>{% else %}---{%endif%}</td>
-	</tr>
-	<tr>
-		<td>О себе: </td>
-		<td>{% if user.profile.user_info %}{{user.profile.user_info}}{% else %}---{%endif%}</td>
+		<td>Телефон: </td>
+		<td>{% if user.profile.phone %}{{user.profile.phone}}{%else%}---{%endif%}</td>
 	</tr>
 </table>
 <h4>Ваши продукты:</h4>

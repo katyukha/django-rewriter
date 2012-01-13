@@ -22,18 +22,16 @@ def edit(request, template_name = "profille/edit.html"):
         if form.is_valid():
             user.first_name   = form.cleaned_data['f_name']
             user.last_name    = form.cleaned_data['l_name']
-            profile.url       = form.cleaned_data['url']
-            profile.user_info = form.cleaned_data['user_info']
+            profile.phone     = form.cleaned_data['phone']
             user.save()
             profile.save()
             return redirect("profile")
     else:
         FormData = {
-	        'f_name'    : user.first_name,
-	        'l_name'    : user.last_name,
-	        'url'       : profile.url,
-	        'user_info' : profile.user_info,
-		}
+            'f_name'    : user.first_name,
+            'l_name'    : user.last_name,
+            'phone'     : profile.phone,
+        }
         form = ProfileForm(initial = FormData)
     return render_to_response(template_name,{
         'form':form,
