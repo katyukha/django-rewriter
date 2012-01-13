@@ -11,10 +11,13 @@ urlpatterns = patterns('',
 
     url(r'^product/',      include('product.urls')),
 
+    url(r'^registration/complete/$', 'django.views.generic.simple.direct_to_template', 
+                           {'template' : 'registration/registration_complete.html'},
+                           name = 'registration_complete'),
     url(r'^registration/register/$',
                            'registration.views.register',
-                           { 'backend': 'registration.backends.simple.SimpleBackend',
-                             'success_url' : 'profile',},
+                           { 'backend': 'profille.InactiveSimpleBackend',
+                             'success_url' : 'registration_complete',},
                            name='registration_register'),
                            
     url(r'^registration/logout/$', 
