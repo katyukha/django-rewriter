@@ -4,13 +4,13 @@ from django.contrib.auth.models import User
 
 
 STATUS_CHOICES = (
-    ('draft',    u'Черновой'),
-    ('progress', u'В работе'),
-    ('deferred', u'Отложенный'),
-    ('done',     u'Выполнено'),
-    ('check',    u'Проверяеться'),
-    ('accepted', u'Принятый'),
-    ('rejected', u'Отклонено')
+    ('draft',      u'Черновой'),
+    ('progress',   u'В работе'),
+    ('deferred',   u'Отложенный'),
+    ('wait_check', u'Ожидает проверки'),
+    ('check',      u'Проверяеться'),
+    ('accepted',   u'Принятый'),
+    ('rejected',   u'Отклонено')
 )
 
     
@@ -64,11 +64,19 @@ class Product(models.Model):
                or  False
 
     def save(self, *args, **kwargs):
-        self.sync = False
+        self.sync = True
         return super(Product, self).save(*args, **kwargs)
 
 class Photo(models.Model):
     product = models.ForeignKey(Product, blank=True, null=True)
-    position = models.IntegerField("Позиция", blank=True)
+    position = models.IntegerField("Позиция", blank=True, default = 1)
     to_del = models.BooleanField(default=False)
     image = models.ImageField("Фотография", upload_to='photos', blank=True)
+
+    def save(self, *args, **kwargs):
+        if self.product:
+           self.product.sync = True
+           self.product.save()
+        return super(Photo, self).save(*args, **kwargs)
+
+
