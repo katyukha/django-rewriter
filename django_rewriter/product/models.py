@@ -67,8 +67,22 @@ class Product(models.Model):
         self.sync = True
         return super(Product, self).save(*args, **kwargs)
 
+    def check_requirements(self):
+        """Checks requirements to match
+           returns true if product matches all requirements
+        """
+        if self.required_full_desc and not self.full_desc:
+            return False
+        if self.required_brief_desc and not self.brief_desc:
+            return False
+        if self.required_meta_info and not (self.meta_title and self.meta_keywords and self.meta_descriptions):
+            return False
+        if self.required_images_count > self.photos.count():
+            return False
+        return True
+
 class Photo(models.Model):
-    product = models.ForeignKey(Product, blank=True, null=True)
+    product = models.ForeignKey(Product, blank=True, null=True, related_name = 'photos')
     position = models.IntegerField("Позиция", blank=True, default = 1)
     to_del = models.BooleanField(default=False)
     image = models.ImageField("Фотография", upload_to='photos', blank=True)
@@ -78,5 +92,4 @@ class Photo(models.Model):
            self.product.sync = True
            self.product.save()
         return super(Photo, self).save(*args, **kwargs)
-
 

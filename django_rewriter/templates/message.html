@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{message.caption}}
+{% endblock %}
+{% block content %}
+<h1>{{ message.caption }}</h1>
+<div class="message">
+    {{ message.text }}
+</div>
+{% endblock %}

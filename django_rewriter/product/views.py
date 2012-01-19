@@ -1,3 +1,4 @@
+# -*- coding: utf8 -*-
 # Create your views here.
 from django.template import RequestContext
 from django_rewriter.product.models import Product, Photo
@@ -7,7 +8,6 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
-
 
 @login_required
 def product_list(request, status = None, owners_only = False, template_name = "product/list.html"):
@@ -39,6 +39,10 @@ def add_product(request, template_name = "product/add.html"):
 @login_required
 def product_edit(request, product_id, template_name = "product/edit.html"):
     p = get_object_or_404(Product, pk=product_id)
+    if p.status == 'check':
+       return render_to_response('message.html',{
+                                                'message':{'caption' : 'Ошибка', 'text' : 'Продукт на проверке. Редактирование продукта запрещено.'}
+                                                }, context_instance=RequestContext(request))
     if request.method == 'POST':
         form = ProductForm(request.user.profile, p, request.POST, instance = p)
         if form.is_valid():
@@ -83,6 +87,10 @@ def product_send(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     if product.user != request.user:  # if somebody tryes to send not own product
        raise Http404
+    if not product.check_requirements():
+       return render_to_response('message.html',{
+                                                 'message':{'caption' : 'Не выполнены все требования', 'text' : 'Вы не выполнили все требования продукта'}
+                                                }, context_instance=RequestContext(request))
     product.status = 'check'
     product.save()
     return redirect("product_view", product_id = product_id)
@@ -90,6 +98,11 @@ def product_send(request, product_id):
 @login_required
 def photo_add(request, product_id, template_name = "product/add_photo.html"):
     product = get_object_or_404(Product, pk=product_id)
+    if product.status == 'check':
+       return render_to_response('message.html',{
+                                                'message':{'caption' : 'Ошибка', 'text' : 'Продукт на проверке. Редактирование продукта запрещено.'}
+                                                }, context_instance=RequestContext(request))
+
     if request.method == 'POST':
         form = PhotoForm(True, request.POST, request.FILES)
         if form.is_valid():
@@ -105,6 +118,11 @@ def photo_add(request, product_id, template_name = "product/add_photo.html"):
 
 @login_required
 def photo_edit(request, product_id, photo_id, template_name = "product/edit_photo.html"):
+    product = get_object_or_404(Product, pk = product_id)
+    if product.status == 'check':
+       return render_to_response('message.html',{
+                                                'message':{'caption' : 'Ошибка', 'text' : 'Продукт на проверке. Редактирование продукта запрещено.'}
+                                                }, context_instance=RequestContext(request))
     photo = get_object_or_404(Photo, pk=photo_id)
     if request.method == 'POST':
         form = PhotoForm(False, request.POST, request.FILES, instance=photo)
