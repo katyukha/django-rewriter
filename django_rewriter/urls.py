@@ -3,14 +3,14 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 
 # import form class
-from profille.auth import RegistrationFormExtraInfo
+from profile.auth import RegistrationFormExtraInfo
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^profile/',      include('profille.urls')),
+    url(r'^profile/',      include('profile.urls')),
 
     url(r'^product/',      include('product.urls')),
 
@@ -19,7 +19,7 @@ urlpatterns = patterns('',
                            name = 'registration_complete'),
     url(r'^registration/register/$',
                            'registration.views.register',
-                           { 'backend': 'profille.auth.InactiveProfileRegisterBackend',
+                           { 'backend': 'profile.auth.InactiveProfileRegisterBackend',
                              'success_url' : 'registration_complete',
                              'form_class' : RegistrationFormExtraInfo,},
                            name='registration_register'),
@@ -30,7 +30,7 @@ urlpatterns = patterns('',
                            name='auth_logout'),
     url(r'^registration/', include('registration.backends.simple.urls')),
 
-    url(r'^$',             'profille.views.profileuser', name = 'home'),
+    url(r'^$',             'profile.views.profileuser', name = 'home'),
 
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     # Examples:

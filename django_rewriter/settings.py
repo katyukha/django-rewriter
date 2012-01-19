@@ -126,7 +126,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'registration',
-    'profille',
+    'profile',
     'product',
     'sorl.thumbnail',
 )
@@ -153,7 +153,7 @@ LOGGING = {
         },
     }
 }
-AUTH_PROFILE_MODULE = 'profille.UserProfile'
+AUTH_PROFILE_MODULE = 'profile.UserProfile'
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/registration/login/'
 

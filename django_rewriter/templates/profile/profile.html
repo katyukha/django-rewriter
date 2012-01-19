@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}Profile{% endblock %}
+{% block content %}
+<h1>Профиль</h1>
+<table>
+	<tr>
+		<td>Имя: </td>
+		<td>{% if user.first_name %}{{user.first_name}}{% else %}---{%endif%}</td>
+	</tr>
+	<tr>
+		<td>Фамилия: </th>
+		<td>{% if user.last_name %}{{user.last_name}}{% else %}---{%endif%}</td>
+	</tr>
+	<tr>
+		<td>Статус: </th>
+		<td>{% if user.profile.is_seo %}
+			SEO
+		    {% else %}
+	                Simple
+		    {% endif %}
+		</td>
+	</tr>
+	<tr>
+		<td>Телефон: </td>
+		<td>{% if user.profile.phone %}{{user.profile.phone}}{%else%}---{%endif%}</td>
+	</tr>
+</table>
+<h4>Ваши продукты:</h4>
+    <div id="list">
+        {% if product_list %}
+            <table id="rounded-corner" >
+            <thead>
+		<tr>
+                	<th scope="col" class="rounded-company">Товар</th>
+                	<th scope="col" class="rounded-q1">Требования</th>
+			<th scope="col" class="rounded-q1">Оценка</th>
+			<th scope="col" class="rounded-q2">Состояние</th>
+			<th scope="col" class="rounded-q3">Действия</th>
+		</tr>
+            </thead>
+	    {% for product in product_list %}
+                <tr class="product-list-line">
+                     <td><a href="{% url product_view product_id=product.id %}">
+                         {{ product }}
+                     </a></td>
+                     <td class="product-requirements">
+                          {% if product.has_requirements %}
+                             <ul>
+                                 {% if product.required_brief_desc %}
+                                    <li>краткое описание</li>
+                                 {% endif %}
+                                 
+                                 {% if product.required_full_desc %}
+                                    <li>полное описание</li>
+                                 {% endif %}
+                                 
+                                 {% if product.required_meta_info %}
+                                    <li>мета теги</li>
+                                 {% endif %}
+                                 
+                                 {% if product.required_images_count > 0 %}
+                                    <li>количество рисунков: {{ product.required_images_count }}</li>
+                                 {% endif %}
+                             </ul>
+                          {% else %}
+                              Нет требований или требования неизвестны
+                          {% endif %}
+                     </td>
+                     <td>{% if product.rating %}{{ product.rating }}{% else %}не оценено{% endif %}</td>
+                     <td>{{ product.get_status_display }}</td>
+                     <td>
+                         {% if product.status == 'draft' %}
+                             <a href="{% url product_linking  product.id %}?next_page={{current_path}}"> Взять себе </a>
+                         {% endif %}
+                         
+                         {% if product.status == 'progress'%}
+                             <a href="{% url product_edit  product.id %}"> Редактировать </a> |
+                             <a href="{% url product_send  product.id %}"> Отправить </a>
+                         {% endif %}
+                     </td>
+		</tr>
+            {% endfor %}
+		<tfoot>
+		 <tr>
+		 <td colspan="4" class="rounded-foot-left"></td>
+		 <td class="rounded-foot-right"></td>
+		 </tr>
+		 </tfoot>
+            </table>
+	{% else %} 
+		Вы еще не выбрали ни одного продукта.
+	{% endif %}
+    </div>
+{% endblock %}
