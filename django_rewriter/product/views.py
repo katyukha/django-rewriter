@@ -96,7 +96,7 @@ def photo_add(request, product_id, template_name = "product/add_photo.html"):
             form.save()
             return redirect("product_view", product_id = product_id)
     else:
-        form = PhotoForm(True, {'product':product_id})
+        form = PhotoForm(True, {'product':product_id, 'position': 1})
 
     return render_to_response(template_name,{
                 'form':form,

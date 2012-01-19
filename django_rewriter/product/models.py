@@ -6,8 +6,8 @@ from django.contrib.auth.models import User
 STATUS_CHOICES = (
     ('draft',      u'Черновой'),
     ('progress',   u'В работе'),
-    ('deferred',   u'Отложенный'),
-    ('wait_check', u'Ожидает проверки'),
+    #('deferred',   u'Отложенный'),
+    #('wait_check', u'Ожидает проверки'),
     ('check',      u'Проверяеться'),
     ('accepted',   u'Принятый'),
     ('rejected',   u'Отклонено')
@@ -18,21 +18,21 @@ class Product(models.Model):
     user = models.ForeignKey(User, blank = True, null = True)
 
     # head fields
-    name = models.CharField("Название", max_length = 50)
+    name = models.CharField("Название", max_length = 128)
 
-    code = models.CharField("Код",max_length=10,blank=True)
+    code = models.CharField("Код",max_length=64,blank=True)
     
     # description fields
-    brief_desc = models.TextField("Краткое описание",max_length = 250,
+    brief_desc = models.TextField("Краткое описание",max_length = 350,
                         blank = True,)
     full_desc = models.TextField("Полное описание",blank = True)
     
     # meta fields
-    meta_title = models.CharField("Мета-заголовок",max_length = 50,
+    meta_title = models.CharField("Мета-заголовок",max_length = 128,
                         blank=True)
-    meta_keywords = models.TextField("Ключевые слова",max_length = 200,
+    meta_keywords = models.TextField("Ключевые слова",max_length = 500,
                         blank=True)
-    meta_desc = models.TextField("Мета-описание",max_length=250,
+    meta_desc = models.TextField("Мета-описание",max_length=500,
                         blank=True)
 
     # state fields

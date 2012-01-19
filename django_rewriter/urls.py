@@ -2,6 +2,9 @@ from django.conf.urls.defaults import patterns, include, url
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 
+# import form class
+from profille.auth import RegistrationFormExtraInfo
+
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
@@ -16,8 +19,9 @@ urlpatterns = patterns('',
                            name = 'registration_complete'),
     url(r'^registration/register/$',
                            'registration.views.register',
-                           { 'backend': 'profille.InactiveSimpleBackend',
-                             'success_url' : 'registration_complete',},
+                           { 'backend': 'profille.auth.InactiveProfileRegisterBackend',
+                             'success_url' : 'registration_complete',
+                             'form_class' : RegistrationFormExtraInfo,},
                            name='registration_register'),
                            
     url(r'^registration/logout/$', 
