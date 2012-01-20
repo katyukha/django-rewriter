@@ -22,6 +22,7 @@ def edit(request, template_name = "profile/edit.html"):
         if form.is_valid():
             user.first_name   = form.cleaned_data['f_name']
             user.last_name    = form.cleaned_data['l_name']
+            user.email        = form.cleaned_data['email']
             profile.phone     = form.cleaned_data['phone']
             user.save()
             profile.save()
@@ -31,6 +32,7 @@ def edit(request, template_name = "profile/edit.html"):
             'f_name'    : user.first_name,
             'l_name'    : user.last_name,
             'phone'     : profile.phone,
+            'email'     : user.email,
         }
         form = ProfileForm(initial = FormData)
     return render_to_response(template_name,{
