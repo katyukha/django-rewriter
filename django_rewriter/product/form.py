@@ -6,6 +6,8 @@ class ProductForm(ModelForm):
 
     def __init__(self, user_profile, prod, *args, **kwargs):
         super(ProductForm, self).__init__(*args, **kwargs)
+        self.fields['name'].widget.attrs = {'readonly' : True}
+        self.fields['code'].widget.attrs = {'readonly' : True}
         if not prod.required_full_desc:
             self.fields['full_desc'].widget = HiddenInput()
         if not prod.required_brief_desc:

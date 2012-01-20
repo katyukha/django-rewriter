@@ -467,6 +467,30 @@ a:hover {
 
 /* ---------------------------------------------- auth ----------------------- */
 
+/* ------------------------- profile ----------------------------------------- */
+#profile-header a.link 
+{
+    font-size: 23;
+    margin-left: 35px;
+}
+{
+/*    width: 500px;*/
+}
+.profile-view table th
+{
+    text-align: left;
+    width:150;
+}
+.profile-view table td
+{
+    border-bottom: 1px dashed #122163;
+}
+form.editform.profile-edit input[type='submit']{
+    /*margin-right: 102px;*/
+    width: 98%;
+    
+}
+/* ------------------------- profile ----------------------------------------- */
 #footer {
    clear: both;
    margin-top:15px;

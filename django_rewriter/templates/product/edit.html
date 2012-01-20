@@ -8,6 +8,8 @@
 	<form class="styled-block-center editform" action="{% url product_edit prod.id %}" method="POST">
             {% csrf_token %}
             <table>
+<!--                 <tr> <th> Название: </th> <th> {{ prod.name }} </th> </tr>!-->
+<!--                 <tr> <th> Код: </th> <th> {{ prod.code }} </th> </tr>  -->
                  {{ form.as_table }}
             </table>
             <div class="inner-right">

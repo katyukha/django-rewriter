@@ -2,12 +2,12 @@
 
 {% block title %}Edit{% endblock %}
 {% block content %}
-	<h1>Редактирование профиля</h1> 
-	<form class="editform" action="{% url profile_edit %}" method="POST">
-	{% csrf_token %}
-	<table>
-            {{ form.as_table }}
-	</table>
-	<input type="submit" value="Сохранить"/>
-	</form>
+    <h1 class="styled-header">Редактирование профиля</h1> 
+    <form class="editform styled-block-center profile-edit" action="{% url profile_edit %}" method="POST">
+            {% csrf_token %}
+            <table>
+                {{ form.as_table }}
+            </table>
+            <input type="submit" value="Сохранить"/>
+    </form>
 {% endblock %}

@@ -2,31 +2,33 @@
 
 {% block title %}Profile{% endblock %}
 {% block content %}
-<h1>Профиль</h1>
-<table>
-	<tr>
-		<td>Имя: </td>
-		<td>{% if user.first_name %}{{user.first_name}}{% else %}---{%endif%}</td>
-	</tr>
-	<tr>
-		<td>Фамилия: </th>
-		<td>{% if user.last_name %}{{user.last_name}}{% else %}---{%endif%}</td>
-	</tr>
-	<tr>
-		<td>Статус: </th>
-		<td>{% if user.profile.is_seo %}
-			SEO
-		    {% else %}
-	                Simple
-		    {% endif %}
-		</td>
-	</tr>
-	<tr>
-		<td>Телефон: </td>
-		<td>{% if user.profile.phone %}{{user.profile.phone}}{%else%}---{%endif%}</td>
-	</tr>
-</table>
-<h4>Ваши продукты:</h4>
+<h1 id="profile-header">Профиль <a class="link" href="{% url profile_edit %}"> ред. </a></h1> 
+<div class="profile-view">
+   <table>
+        <tr>
+                <th>Имя: </th>
+                <td>{% if user.first_name %}{{user.first_name}}{% else %}---{%endif%}</td>
+        </tr>
+        <tr>
+                <th>Фамилия: </th>
+                <td>{% if user.last_name %}{{user.last_name}}{% else %}---{%endif%}</td>
+        </tr>
+        <tr>
+                <th>Статус: </th>
+                <td>{% if user.profile.is_seo %}
+                        SEO
+                    {% else %}
+                        Simple
+                    {% endif %}
+                </td>
+        </tr>
+        <tr>
+                <th>Телефон: </th>
+                <td>{% if user.profile.phone %}{{user.profile.phone}}{%else%}---{%endif%}</td>
+        </tr>
+    </table>
+</div>
+<h3>Ваши продукты:</h3>
     <div id="list">
         {% if product_list %}
             <table id="rounded-corner" >
