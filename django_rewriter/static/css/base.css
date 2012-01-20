@@ -38,7 +38,14 @@ a:hover {
     background: #001570;
     padding: 5px;
     text-align: right;
-    color: #fff;
+    color: #ffffff;
+
+    /*background-color: #59598E;*/
+    border-color: #234799;
+    border-radius: 3px 3px 13px 13px;
+    /*border-style: ;*/
+    /*border-width: 2px;*/
+                                    
 }
 
 #user-info a {
@@ -502,4 +509,10 @@ form.editform.profile-edit input[type='submit']{
    background: #001570;
    color: #73DF90;
    padding: 5px;
+   
+   /*background-color: #59598E;*/
+    /*border-color: #234799;*/
+    border-radius: 19px 19px 3px 3px;
+    /*border-style: ;*/
+    /*border-width: 2px;*/
 }
